@@ -51,5 +51,13 @@ RUBY
   include SimpleAuthentication::Authenticate::LocalInstanceMethods
 RUBY
     end
+
+    inject_into_file 'Gemfile', after: "source 'https://rubygems.org'\n" do <<-'RUBY'
+gem 'bootstrap', '~> 4.0.0.beta3'
+gem 'font-awesome-rails'
+gem 'bcrypt'
+gem 'jquery-rails'
+RUBY
+    end
   end
 end

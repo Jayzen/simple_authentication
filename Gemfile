@@ -12,7 +12,3 @@ gemspec
 
 # To use a debugger
 # gem 'byebug', group: [:development, :test]
-gem 'bcrypt'
-gem 'bootstrap', '~> 4.0.0.beta3'
-gem 'jquery-rails'
-gem 'turbolinks'
