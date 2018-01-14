@@ -8,14 +8,17 @@ How to use my plugin.
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'simple_authentication'
+#gemfile
+gem 'simple_authentication', git: 'git@github.com:Jayzen/simple_authentication.git'
 ```
 
 And then execute:
 ```bash
 $ bundle
 $ rails generate initializer
+$ bundle
 $ rails db:create db:migrate
+$ rails s
 ```
 
 ## Contributing
