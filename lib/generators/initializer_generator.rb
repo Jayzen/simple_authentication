@@ -48,4 +48,5 @@ RUBY
   include SimpleAuthentication::Authenticate::LocalInstanceMethods
 RUBY
     end
+  end
 end
