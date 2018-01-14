@@ -14,11 +14,8 @@ gem 'simple_authentication'
 And then execute:
 ```bash
 $ bundle
-```
-
-Or install it yourself as:
-```bash
-$ gem install simple_authentication
+$ rails generate initializer
+$ rails db:create db:migrate
 ```
 
 ## Contributing
