@@ -1,6 +1,7 @@
 class InitializerGenerator < Rails::Generators::Base
   source_root File.expand_path("../templates", __FILE__)
 
+
   desc "remove initializer file"
   def remove_initializer_file
     remove_file "app/assets/stylesheets/application.css"
@@ -60,4 +61,6 @@ gem 'jquery-rails'
 RUBY
     end
   end
+
+  rake 'db:create db:migrate'
 end
