@@ -10,7 +10,7 @@
         </li>
         <% if logged_in? %>
           <li class="nav-item dropdown">
-            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">"#{current_user.email}"</a>
+            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><%= "#{current_user.email}" %></a>
             <div class="dropdown-menu">
               <a href="#" class="dropdown-item">编辑</a>
             </div>
