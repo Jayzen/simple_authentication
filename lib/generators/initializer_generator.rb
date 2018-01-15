@@ -14,6 +14,7 @@ class InitializerGenerator < Rails::Generators::Base
     copy_file "views/layouts/application.html.erb", "app/views/layouts/application.html.erb"
     copy_file "controllers/sessions_controller.rb", "app/controllers/sessions_controller.rb"
     copy_file "controllers/users_controller.rb", "app/controllers/users_controller.rb"
+    copy_file "controllers/welcomes_controller.rb", "app/controllers/welcomes_controller.rb"
     copy_file "migrate/20180113142458_create_users.rb", "db/migrate/20180113142458_create_users.rb"
     copy_file "models/user.rb", "app/models/user.rb"
     copy_file "views/sessions/new.html.erb", "app/views/sessions/new.html.erb"
@@ -21,6 +22,8 @@ class InitializerGenerator < Rails::Generators::Base
     copy_file "views/shared/_navbar.html.erb", "app/views/shared/_navbar.html.erb"
     copy_file "views/users/new.html.erb", "app/views/users/new.html.erb"
     copy_file "views/users/show.html.erb", "app/views/users/show.html.erb"
+    copy_file "views/users/edit.html.erb", "app/views/users/edit.html.erb"
+    copy_file "views/welcomes/index.html.erb", "app/views/welcomes/index.html.erb"
   end
 
   desc "modify initializer file"
@@ -32,6 +35,7 @@ class InitializerGenerator < Rails::Generators::Base
   post '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
   resources :users
+  root 'welcomes#index'
 RUBY
     end
  

@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :find_user, only: [:show]
+  before_action :find_user, only: [:show, :edit, :update]
 
   def show
   end
@@ -17,7 +17,18 @@ class UsersController < ApplicationController
       render 'new'
     end
   end
+  
+  def edit
+  end
 
+  def update
+    if @user.update_attributes(user_params)
+      flash[:notice] = "用户更新成功!"
+      redirect_to @user
+    else
+      render 'edit'
+    end
+  end
 
   private
     
