@@ -62,5 +62,5 @@ RUBY
     end
   end
 
-  rails 'db:create db:migrate'
+  route "resources :people"
 end
