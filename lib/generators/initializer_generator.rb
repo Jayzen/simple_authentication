@@ -18,7 +18,7 @@ class InitializerGenerator < Rails::Generators::Base
     copy_file "models/user.rb", "app/models/user.rb"
     copy_file "views/sessions/new.html.erb", "app/views/sessions/new.html.erb"
     copy_file "views/shared/_error_messages.html.erb", "app/views/shared/_error_messages.html.erb"
-    copy_file "views/shared/_judge_login.html.erb", "app/views/shared/_judge_login.html.erb"
+    copy_file "views/shared/_navbar.html.erb", "app/views/shared/_navbar.html.erb"
     copy_file "views/users/new.html.erb", "app/views/users/new.html.erb"
     copy_file "views/users/show.html.erb", "app/views/users/show.html.erb"
   end
