@@ -61,6 +61,4 @@ gem 'jquery-rails'
 RUBY
     end
   end
-
-  route "resources :people"
 end
