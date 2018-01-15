@@ -13,6 +13,7 @@
             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><%= "#{current_user.email}" %></a>
             <div class="dropdown-menu">
               <a href="#" class="dropdown-item">编辑</a>
+              <%= link_to "退出", logout_path, class: "dropdown-item" %>
             </div>
           </li>
         <% else %>
