@@ -3,6 +3,7 @@ gem 'bootstrap', '~> 4.0.0.beta3'
 gem 'font-awesome-rails'
 gem 'bcrypt'
 gem 'jquery-rails'
+gem 'kaminari'
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")

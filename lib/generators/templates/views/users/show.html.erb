@@ -1,1 +1,15 @@
-<%= @user.email %>
+<div class="card border-secondary mb-3">
+  <div class="card-header">
+    <%= @user.name %>
+    <% if @user.admin? %>
+      <button type="button" class="btn btn-info btn-sm">管理员</button>
+    <% else %>
+      <button type="button" class="btn btn-info btn-sm">普通用户</button>
+    <% end %>
+  </div>
+  <div class="card-body">
+    <h4 class="card-title">邮箱</h4>
+    <p class="card-text"><%= @user.email %></p>
+  </div>
+</div>
+

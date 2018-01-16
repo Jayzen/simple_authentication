@@ -18,12 +18,15 @@ class InitializerGenerator < Rails::Generators::Base
     copy_file "migrate/20180113142458_create_users.rb", "db/migrate/20180113142458_create_users.rb"
     copy_file "models/user.rb", "app/models/user.rb"
     copy_file "views/sessions/new.html.erb", "app/views/sessions/new.html.erb"
-    copy_file "views/shared/_error_messages.html.erb", "app/views/shared/_error_messages.html.erb"
+    copy_file "views/shared/_errors.html.erb", "app/views/shared/_errors.html.erb"
     copy_file "views/shared/_navbar.html.erb", "app/views/shared/_navbar.html.erb"
+    copy_file "views/shared/_flash.html.erb", "app/views/shared/_flash.html.erb"
     copy_file "views/users/new.html.erb", "app/views/users/new.html.erb"
     copy_file "views/users/show.html.erb", "app/views/users/show.html.erb"
     copy_file "views/users/edit.html.erb", "app/views/users/edit.html.erb"
+    copy_file "views/users/index.html.erb", "app/views/users/index.html.erb"
     copy_file "views/welcomes/index.html.erb", "app/views/welcomes/index.html.erb"
+    copy_file "locales/zh.yml", "config/locales/zh.yml"
   end
 
   desc "modify initializer file"
@@ -47,8 +50,14 @@ RUBY
     end
 
     inject_into_file 'app/controllers/application_controller.rb', after: "protect_from_forgery with: :exception\n" do <<-'RUBY'
+  before_action :set_locale
   include SimpleAuthentication::Authenticate
   authenticate
+  
+  private
+    def set_locale
+      I18n.locale = params[:locale] || I18n.default_locale 
+    end
 RUBY
     end
 
@@ -62,6 +71,19 @@ gem 'bootstrap', '~> 4.0.0.beta3'
 gem 'font-awesome-rails'
 gem 'bcrypt'
 gem 'jquery-rails'
+gem 'kaminari'
+RUBY
+    end
+
+    inject_into_file 'config/application.rb', after: "config.load_defaults 5.1\n" do <<-'RUBY'
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '*.{rb,yml}').to_s]
+    config.i18n.default_locale = :zh
+    config.encoding = 'utf-8'
+    config.generators do |generator|
+      generator.assets false
+      generator.test_framework false
+      generator.skip_routes true
+    end
 RUBY
     end
   end
