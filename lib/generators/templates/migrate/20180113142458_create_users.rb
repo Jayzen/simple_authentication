@@ -6,6 +6,7 @@ class CreateUsers < ActiveRecord::Migration[5.1]
       t.string :name
       t.boolean :admin, default: false
       t.boolean :superadmin, default: false
+      t.string :remember_digest
       t.timestamps
     end
     add_index :users, :email, unique: true
