@@ -1,11 +1,38 @@
 <div class="card border-secondary mb-3">
   <div class="card-header">
-    <%= @user.name %>
-    <% if @user.admin? %>
-      <button type="button" class="btn btn-info btn-sm">管理员</button>
-    <% else %>
-      <button type="button" class="btn btn-info btn-sm">普通用户</button>
-    <% end %>
+    <div class="d-flex flex-row">
+      <div class="item-hl">
+        <%= @user.name %>
+      </div>&nbsp
+      <div class="item-h1">
+        <% if current_user?(@user) %>
+          <button type="button" class="btn btn-danger btn-sm">当前用户</button>
+        <% end %>
+      </div>&nbsp
+      <div class="item-h1">
+        <% if @user.admin? && @user.superadmin? %>
+          <button type="button" class="btn btn-info btn-sm">超级管理员</button>
+        <% elsif @user.admin? && !@user.superadmin? %>
+          <button type="button" class="btn btn-info btn-sm">管理员</button>
+        <% else %>
+          <button type="button" class="btn btn-info btn-sm">普通用户</button>
+        <% end %>
+      </div>&nbsp
+      <div class="item-h1">
+        <% if current_user.superadmin? %>
+          <% if @user.admin? && !@user.superadmin? %>
+            <%= form_for(@user, url: unauthorize_user_path(@user), method: :post) do |f| %>
+              <%=f.submit "设为普通用户", class: "btn btn-danger btn-sm" %>
+            <% end %>
+          <% elsif !@user.admin? && !@user.superadmin? %>
+            <%= form_for(@user, url: authorize_user_path(@user), method: :post) do |f| %>
+              <%=f.submit "设为管理员", class: "btn btn-danger btn-sm" %>
+            <% end %>
+          <% else %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
   </div>
   <div class="card-body">
     <h4 class="card-title">邮箱</h4>

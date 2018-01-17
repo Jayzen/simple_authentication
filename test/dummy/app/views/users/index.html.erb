@@ -14,7 +14,9 @@
         <th scope="row"><%= user.id %></th>
         <td>
           <%= link_to "#{user.name}", user_path(user) %>
-          <% if user.admin? %>
+          <% if user.admin? && user.superadmin? %>
+            <button type="button" class="btn btn-info btn-sm">超级管理员</button>
+          <% elsif user.admin? && !user.superadmin? %>
             <button type="button" class="btn btn-info btn-sm">管理员</button>
           <% end %>
         </td>
@@ -23,7 +25,7 @@
           <% unless !current_user?(user) %>
             <%= link_to "编辑", edit_user_path(user), class: "btn btn-primary btn-sm" %>
           <% end %>
-          <% if current_user.admin? && !current_user?(user) %>
+          <% if current_user.admin? && !current_user?(user) && !user.admin? %>
             <%= link_to "删除", user, method: :delete, data: { confirm: "确定删除该用户?" }, class: "btn btn-danger btn-sm" %>
           <% end %> 
         </td>

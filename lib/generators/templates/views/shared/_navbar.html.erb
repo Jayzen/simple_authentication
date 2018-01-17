@@ -1,5 +1,5 @@
+<div class="container">
 <nav class="navbar navbar-expand-sm navbar-light bg-light mb-3">
-  <div class="container">
       <%= link_to "SimpleAuth", root_path, class: "navbar-brand" %>
       <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarNav">
@@ -7,13 +7,15 @@
             <li class="nav-item">
               <%= link_to "主页", root_path, class: "nav-link" %>
             </li>
+            <% if logged_in? %>
+              <li class="nav-item">
+                <%= link_to "用户", users_path, class: "nav-link" %>
+              </li>
+            <% end %>
           </ul>
         </div>
         <ul class="navbar-nav">
           <% if logged_in? %>
-            <li class="nav-item">
-              <%= link_to "用户", users_path, class: "nav-link" %>
-            </li>
             <li class="nav-item dropdown">
               <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><%= current_user.name %></a>
               <div class="dropdown-menu">
@@ -30,5 +32,6 @@
             </li>
           <% end %>
         </ul>
-  </div>
 </nav>
+</div>
+

@@ -58,6 +58,10 @@ module SimpleAuthentication
         def admin_user
           redirect_to(root_url) unless current_user.admin?
         end
+        
+        def superadmin_user
+          redirect_to(root_url) unless current_user.superadmin?
+        end
     end
   end
 end

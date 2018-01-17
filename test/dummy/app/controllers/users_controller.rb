@@ -1,8 +1,9 @@
 class UsersController < ApplicationController
-  before_action :find_user, only: [:show, :edit, :update]
-  before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
+  before_action :find_user, only: [:show, :edit, :update, :authorize, :unauthorize]
+  before_action :logged_in_user, only: [:index, :edit, :update, :destroy, :show]
   before_action :correct_user, only: [:edit, :update]
   before_action :admin_user, only: :destroy
+  before_action :superadmin_user, only: [:authorize, :unauthorize]
 
   def show
   end
@@ -42,6 +43,16 @@ class UsersController < ApplicationController
     User.find(params[:id]).destroy
     flash[:success] = "用户已经被删除!"
     redirect_to users_path
+  end
+
+  def authorize
+    @user.toggle!(:admin)
+    redirect_to user_path(@user)
+  end
+
+  def unauthorize
+    @user.toggle!(:admin)
+    redirect_to user_path(@user)
   end
 
   private
