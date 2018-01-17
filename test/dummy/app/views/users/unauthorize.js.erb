@@ -1,0 +1,2 @@
+$("#set_authorize").html("<%= escape_javascript(render('authorize')) %>");
+$("#set_name").html("<button type='button' class='btn btn-info btn-sm'><%= @user.admin? ? '管理员': '普通用户' %></button>")

@@ -25,6 +25,10 @@ class InitializerGenerator < Rails::Generators::Base
     copy_file "views/users/show.html.erb", "app/views/users/show.html.erb"
     copy_file "views/users/edit.html.erb", "app/views/users/edit.html.erb"
     copy_file "views/users/index.html.erb", "app/views/users/index.html.erb"
+    copy_file "views/users/_authorize.html.erb", "app/views/users/_authorize.html.erb"
+    copy_file "views/users/_unauthorize.html.erb", "app/views/users/_unauthorize.html.erb"
+    copy_file "views/users/authorize.js.erb", "app/views/users/authorize.js.erb"
+    copy_file "views/users/unauthorize.js.erb", "app/views/users/unauthorize.js.erb"
     copy_file "views/welcomes/index.html.erb", "app/views/welcomes/index.html.erb"
     copy_file "locales/zh.yml", "config/locales/zh.yml"
   end

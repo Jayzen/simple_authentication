@@ -47,12 +47,20 @@ class UsersController < ApplicationController
 
   def authorize
     @user.toggle!(:admin)
-    redirect_to user_path(@user)
+    
+    respond_to do |format|
+      format.html { redirect_to @user }
+      format.js
+    end
   end
 
   def unauthorize
     @user.toggle!(:admin)
-    redirect_to user_path(@user)
+    
+    respond_to do |format|
+      format.html { redirect_to @user }
+      format.js
+    end 
   end
 
   private

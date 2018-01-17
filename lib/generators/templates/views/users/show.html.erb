@@ -9,7 +9,7 @@
           <button type="button" class="btn btn-danger btn-sm">当前用户</button>
         <% end %>
       </div>&nbsp
-      <div class="item-h1">
+      <div class="item-h1", id="set_name">
         <% if @user.admin? && @user.superadmin? %>
           <button type="button" class="btn btn-info btn-sm">超级管理员</button>
         <% elsif @user.admin? && !@user.superadmin? %>
@@ -18,16 +18,12 @@
           <button type="button" class="btn btn-info btn-sm">普通用户</button>
         <% end %>
       </div>&nbsp
-      <div class="item-h1">
+      <div class="item-h1", id="set_authorize">
         <% if current_user.superadmin? %>
           <% if @user.admin? && !@user.superadmin? %>
-            <%= form_for(@user, url: unauthorize_user_path(@user), method: :post) do |f| %>
-              <%=f.submit "设为普通用户", class: "btn btn-danger btn-sm" %>
-            <% end %>
+            <%= render 'unauthorize' %>
           <% elsif !@user.admin? && !@user.superadmin? %>
-            <%= form_for(@user, url: authorize_user_path(@user), method: :post) do |f| %>
-              <%=f.submit "设为管理员", class: "btn btn-danger btn-sm" %>
-            <% end %>
+            <%= render 'authorize' %>
           <% else %>
           <% end %>
         <% end %>
