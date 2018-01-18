@@ -17,6 +17,7 @@ class InitializerGenerator < Rails::Generators::Base
     copy_file "controllers/welcomes_controller.rb", "app/controllers/welcomes_controller.rb"
     copy_file "migrate/20180113142458_create_users.rb", "db/migrate/20180113142458_create_users.rb"
     copy_file "models/user.rb", "app/models/user.rb"
+    copy_file "uploaders/portrait_uploader.rb", "app/uploaders/portrait_uploader.rb"
     copy_file "views/sessions/new.html.erb", "app/views/sessions/new.html.erb"
     copy_file "views/shared/_errors.html.erb", "app/views/shared/_errors.html.erb"
     copy_file "views/shared/_navbar.html.erb", "app/views/shared/_navbar.html.erb"
@@ -81,6 +82,8 @@ gem 'font-awesome-rails'
 gem 'bcrypt'
 gem 'jquery-rails'
 gem 'kaminari'
+gem 'carrierwave'
+gem 'mini_magick'
 RUBY
     end
 

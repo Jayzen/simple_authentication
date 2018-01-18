@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   include SimpleAuthentication::ModelAuthenticate
   model_authenticate
+  mount_uploader :portrait, PortraitUploader
 
   before_save { self.email = email.downcase }
   

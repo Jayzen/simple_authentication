@@ -4,6 +4,8 @@ gem 'font-awesome-rails'
 gem 'bcrypt'
 gem 'jquery-rails'
 gem 'kaminari'
+gem 'carrierwave'
+gem 'mini_magick'
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")

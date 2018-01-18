@@ -2,7 +2,7 @@
   <div class="card-header">
     <div class="d-flex flex-row">
       <div class="item-hl">
-        <%= @user.name %>
+        <strong><%= @user.name %></strong>
       </div>&nbsp
       <div class="item-h1">
         <% if current_user?(@user) %>
@@ -33,6 +33,7 @@
   <div class="card-body">
     <h4 class="card-title">邮箱</h4>
     <p class="card-text"><%= @user.email %></p>
+    <%= image_tag @user.portrait if @user.portrait? %>
   </div>
 </div>
 
