@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :find_user, only: [:show, :edit, :update, :authorize, :unauthorize]
-  before_action :logged_in_user, only: [:index, :edit, :update, :destroy, :show]
+  before_action :logged_in_user, only: [:edit, :update, :destroy, :show]
   before_action :correct_user, only: [:edit, :update]
   before_action :admin_user, only: :destroy
   before_action :superadmin_user, only: [:authorize, :unauthorize]
@@ -34,10 +34,6 @@ class UsersController < ApplicationController
     else
       render 'new'
     end
-  end
-
-  def index
-    @users = User.order("created_at desc").page(params[:page])
   end
 
   def destroy

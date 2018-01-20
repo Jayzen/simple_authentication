@@ -24,7 +24,6 @@ class InitializerGenerator < Rails::Generators::Base
     copy_file "views/shared/_flash.html.erb", "app/views/shared/_flash.html.erb"
     copy_file "views/users/new.html.erb", "app/views/users/new.html.erb"
     copy_file "views/users/show.html.erb", "app/views/users/show.html.erb"
-    copy_file "views/users/index.html.erb", "app/views/users/index.html.erb"
     copy_file "views/users/_authorize.html.erb", "app/views/users/_authorize.html.erb"
     copy_file "views/users/_unauthorize.html.erb", "app/views/users/_unauthorize.html.erb"
     copy_file "views/users/authorize.js.erb", "app/views/users/authorize.js.erb"
