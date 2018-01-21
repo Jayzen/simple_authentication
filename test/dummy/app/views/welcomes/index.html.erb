@@ -36,14 +36,12 @@
               <% if current_user.admin? && !current_user?(user) && !user.admin? %>
                 <%= link_to "删除", user, method: :delete, data: { confirm: "确定删除该用户?" }, class: "btn btn-danger btn-sm" %>&nbsp
             </div> 
-            <div class="item-h1">
-              <div id="set-forbidden">
+            <div class="item-h1" id="<%= user.id %>-set-forbidden">
                 <% if user.forbidden? %>
                   <%= render 'unforbidden', "@user": user %>
                 <% else %>
                   <%= render 'forbidden', "@user": user %>
                 <% end %>
-              </div>
               <% end %>
             </div>
           </div>
@@ -66,8 +64,5 @@
 </div>
 <% end %>
 
-<div id="test">
-  this is the test div
-</div>
 
 

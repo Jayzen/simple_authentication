@@ -1,2 +1,1 @@
-$("#set_forbidden").html("<%= escape_javascript(render('welcomes/forbidden')) %>");
-$("#test").html("<%= escape_javascript(render('welcomes/test')) %>");
+$("#<%=@user.id%>-set-forbidden").html("<%= escape_javascript(render('welcomes/unforbidden')) %>");
