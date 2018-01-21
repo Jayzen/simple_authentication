@@ -1,3 +1,1 @@
-<%= form_for(@user, url: unauthorize_user_path(@user), method: :post, remote: true) do |f| %>
-  <%=f.submit "设为普通用户", class: "btn btn-danger btn-sm" %>
-<% end %>
+$("#set_forbidden").html("<%= escape_javascript(render('welcomes/unforbidden')) %>");

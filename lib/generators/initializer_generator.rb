@@ -33,6 +33,7 @@ class InitializerGenerator < Rails::Generators::Base
     copy_file "views/users/unforbidden.js.erb", "app/views/users/unforbidden.js.erb"
     copy_file "views/welcomes/_unforbidden.html.erb", "app/views/welcomes/_unforbidden.html.erb"
     copy_file "views/welcomes/_forbidden.html.erb", "app/views/welcomes/_forbidden.html.erb"
+    copy_file "views/welcomes/_test.html.erb", "app/views/welcomes/_test.html.erb"
     copy_file "views/users/avatar_new.html.erb", "app/views/users/avatar_new.html.erb"
     copy_file "views/users/crop.html.erb", "app/views/users/crop.html.erb"
     copy_file "views/welcomes/index.html.erb", "app/views/welcomes/index.html.erb"
