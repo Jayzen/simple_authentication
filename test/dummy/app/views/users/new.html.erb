@@ -33,7 +33,7 @@
     <div class="col-sm-10">
       <%= f.submit @user.new_record? ? "用户注册" : "用户更新", class: "btn btn-primary"%>
       <% unless @user.new_record? %>
-        <%= link_to "修改头像", "#", class: "btn btn-primary" %>
+        <%= link_to "修改头像", avatar_new_user_path(@user), class: "btn btn-primary" %>
       <% end %>
     </div> 
   </div>

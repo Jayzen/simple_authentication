@@ -23,13 +23,28 @@
         </td>
         <td><%= user.email %></td>
         <td>
-          <%= link_to "查看", user_path(user), class: "btn btn-secondary btn-sm" %>
-          <% unless !current_user?(user) %>
-            <%= link_to "编辑", edit_user_path(user), class: "btn btn-primary btn-sm" %>
-          <% end %>
-          <% if current_user.admin? && !current_user?(user) && !user.admin? %>
-            <%= link_to "删除", user, method: :delete, data: { confirm: "确定删除该用户?" }, class: "btn btn-danger btn-sm" %>
-          <% end %>
+          <div class="d-flex flex-row">
+            <div class="item-h1">
+              <%= link_to "查看", user_path(user), class: "btn btn-secondary btn-sm" %>&nbsp
+            </div>
+            <div class="item-h1">
+              <% unless !current_user?(user) %>
+                <%= link_to "编辑", edit_user_path(user), class: "btn btn-primary btn-sm" %>&nbsp
+              <% end %>
+            </div>
+            <div class="item-h1">
+              <% if current_user.admin? && !current_user?(user) && !user.admin? %>
+                <%= link_to "删除", user, method: :delete, data: { confirm: "确定删除该用户?" }, class: "btn btn-danger btn-sm" %>&nbsp
+            </div> 
+            <div class="item-h1", id="user-forbidden">
+                <% if user.forbidden? %>
+                  <%= render 'unforbidden', "@user": user %>
+                <% else %>
+                  <%= render 'forbidden', "@user": user %>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
         </td>
       </tr>
       <% end %>

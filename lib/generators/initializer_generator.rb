@@ -11,13 +11,14 @@ class InitializerGenerator < Rails::Generators::Base
   desc "copy initializer file"
   def copy_initializer_file
     copy_file "assets/application.scss", "app/assets/stylesheets/application.scss"
+    copy_file "assets/avatar.coffee", "app/assets/javascripts/avatar.coffee"
     copy_file "views/layouts/application.html.erb", "app/views/layouts/application.html.erb"
     copy_file "controllers/sessions_controller.rb", "app/controllers/sessions_controller.rb"
     copy_file "controllers/users_controller.rb", "app/controllers/users_controller.rb"
     copy_file "controllers/welcomes_controller.rb", "app/controllers/welcomes_controller.rb"
     copy_file "migrate/20180113142458_create_users.rb", "db/migrate/20180113142458_create_users.rb"
     copy_file "models/user.rb", "app/models/user.rb"
-    copy_file "uploaders/portrait_uploader.rb", "app/uploaders/portrait_uploader.rb"
+    copy_file "uploaders/avatar_uploader.rb", "app/uploaders/avatar_uploader.rb"
     copy_file "views/sessions/new.html.erb", "app/views/sessions/new.html.erb"
     copy_file "views/shared/_errors.html.erb", "app/views/shared/_errors.html.erb"
     copy_file "views/shared/_navbar.html.erb", "app/views/shared/_navbar.html.erb"
@@ -28,6 +29,12 @@ class InitializerGenerator < Rails::Generators::Base
     copy_file "views/users/_unauthorize.html.erb", "app/views/users/_unauthorize.html.erb"
     copy_file "views/users/authorize.js.erb", "app/views/users/authorize.js.erb"
     copy_file "views/users/unauthorize.js.erb", "app/views/users/unauthorize.js.erb"
+    copy_file "views/users/forbidden.js.erb", "app/views/users/forbidden.js.erb"
+    copy_file "views/users/unforbidden.js.erb", "app/views/users/unforbidden.js.erb"
+    copy_file "views/welcomes/_unforbidden.html.erb", "app/views/welcomes/_unforbidden.html.erb"
+    copy_file "views/welcomes/_forbidden.html.erb", "app/views/welcomes/_forbidden.html.erb"
+    copy_file "views/users/avatar_new.html.erb", "app/views/users/avatar_new.html.erb"
+    copy_file "views/users/crop.html.erb", "app/views/users/crop.html.erb"
     copy_file "views/welcomes/index.html.erb", "app/views/welcomes/index.html.erb"
     copy_file "locales/zh.yml", "config/locales/zh.yml"
   end
@@ -42,12 +49,11 @@ class InitializerGenerator < Rails::Generators::Base
   delete '/logout',  to: 'sessions#destroy'
   resources :users do
     member do
-      post :authorize, :unauthorize
+      post :authorize, :unauthorize, :forbidden, :unforbidden, :avatar_create, :avatar_update
+      get :avatar_new
     end
   end
   root 'welcomes#index'
-  
-    
 RUBY
     end
  
@@ -55,6 +61,8 @@ RUBY
 //= require jquery3
 //= require popper
 //= require bootstrap
+//= require jcrop
+//= require avatar
 RUBY
     end
 
@@ -75,7 +83,7 @@ RUBY
 RUBY
     end
 
-    inject_into_file 'Gemfile', after: "source 'https://rubygems.org'\n" do <<-'RUBY'
+    inject_into_file 'Gemfile', after: "#source 'https://rubygems.org'\n" do <<-'RUBY'
 gem 'bootstrap', '~> 4.0.0.beta3'
 gem 'font-awesome-rails'
 gem 'bcrypt'
@@ -83,6 +91,7 @@ gem 'jquery-rails'
 gem 'kaminari'
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'rails-assets-jcrop', source: 'https://rails-assets.org'
 RUBY
     end
 

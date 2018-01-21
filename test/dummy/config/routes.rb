@@ -6,10 +6,9 @@ Rails.application.routes.draw do
   delete '/logout',  to: 'sessions#destroy'
   resources :users do
     member do
-      post :authorize, :unauthorize
+      post :authorize, :unauthorize, :forbidden, :unforbidden, :avatar_create, :avatar_update
+      get :avatar_new
     end
   end
   root 'welcomes#index'
-  
-    
 end

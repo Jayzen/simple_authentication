@@ -1,7 +1,11 @@
 class UsersController < ApplicationController
-  before_action :find_user, only: [:show, :edit, :update, :authorize, :unauthorize]
-  before_action :logged_in_user, only: [:edit, :update, :destroy, :show]
-  before_action :correct_user, only: [:edit, :update]
+  before_action :find_user, only: [:show, :edit, :update, 
+                                   :authorize, :unauthorize,
+                                   :avatar_new, :avatar_create, :avatar_update]
+  before_action :logged_in_user, only: [:edit, :update, :destroy, :show,
+                                        :avatar_create, :avatar_update, :avatar_new]
+  before_action :correct_user, only: [:edit, :update,
+                                   :avatar_create, :avatar_update, :avatar_new]
   before_action :admin_user, only: :destroy
   before_action :superadmin_user, only: [:authorize, :unauthorize]
 
@@ -36,6 +40,18 @@ class UsersController < ApplicationController
     end
   end
 
+  def avatar_new 
+    
+  end
+
+  def avatar_create
+    
+  end
+
+  def avatar_update
+
+  end
+  
   def destroy
     User.find(params[:id]).destroy
     flash[:success] = "用户已经被删除!"
@@ -47,6 +63,26 @@ class UsersController < ApplicationController
     
     respond_to do |format|
       format.html { redirect_to @user }
+      format.js
+    end
+  end
+
+  def forbidden
+    @user = User.find(params[:user_id])
+    @user.toggle!(:forbidden)
+
+    respond_to do |format|
+      format.html { redirect_to users_path }
+      format.js
+    end
+  end
+
+  def unforbidden
+    @user = User.find(params[:user_id])
+    @user.toggle!(:forbidden)
+
+    respond_to do |format|
+      format.html { redirect_to users_path }
       format.js
     end
   end
