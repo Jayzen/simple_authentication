@@ -5,10 +5,15 @@ class SessionsController < ApplicationController
   def create
     user = User.find_by(email: params[:session][:email].downcase)
     if user && user.authenticate(params[:session][:password])
-      log_in user
-      params[:session][:remember_me] == '1' ? remember(user) : forget(user)
-      flash[:success] = "用户登录成功!"
-      redirect_back_or user
+      if user.forbidden?
+        flash.now[:danger] = "用户已经被禁止!"
+        render 'new'
+      else
+        log_in user
+        params[:session][:remember_me] == '1' ? remember(user) : forget(user)
+        flash[:success] = "用户登录成功!"
+        redirect_back_or user
+      end
     else
       flash.now[:danger] = '邮箱或者密码错误!'
       render 'new'
