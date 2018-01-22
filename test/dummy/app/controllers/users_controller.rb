@@ -19,9 +19,9 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      log_in @user
-      flash[:success] = "用户注册成功!"
-      redirect_to user_path(@user)
+      UserMailer.account_activation(@user).deliver_now
+      flash[:danger] = "查看邮箱，进行激活"
+      redirect_to root_path
     else
       render 'new'
     end

@@ -8,6 +8,9 @@ class SessionsController < ApplicationController
       if user.forbidden?
         flash.now[:danger] = "用户已经被禁止!"
         render 'new'
+      elsif user.activated?
+        flash.now[:danger] = "用户未激活!"
+        render 'new'
       else
         log_in user
         params[:session][:remember_me] == '1' ? remember(user) : forget(user)

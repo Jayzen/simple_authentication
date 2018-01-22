@@ -11,4 +11,5 @@ Rails.application.routes.draw do
     end
   end
   root 'welcomes#index'
+  resources :account_activations, only: [:edit]
 end

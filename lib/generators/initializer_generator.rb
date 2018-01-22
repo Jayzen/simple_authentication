@@ -15,6 +15,7 @@ class InitializerGenerator < Rails::Generators::Base
     copy_file "views/layouts/application.html.erb", "app/views/layouts/application.html.erb"
     copy_file "controllers/sessions_controller.rb", "app/controllers/sessions_controller.rb"
     copy_file "controllers/users_controller.rb", "app/controllers/users_controller.rb"
+    copy_file "controllers/account_activations_controller.rb", "app/controllers/account_activations_controller.rb"
     copy_file "controllers/welcomes_controller.rb", "app/controllers/welcomes_controller.rb"
     copy_file "migrate/20180113142458_create_users.rb", "db/migrate/20180113142458_create_users.rb"
     copy_file "models/user.rb", "app/models/user.rb"
@@ -38,6 +39,11 @@ class InitializerGenerator < Rails::Generators::Base
     copy_file "views/users/crop.html.erb", "app/views/users/crop.html.erb"
     copy_file "views/welcomes/index.html.erb", "app/views/welcomes/index.html.erb"
     copy_file "locales/zh.yml", "config/locales/zh.yml"
+    copy_file "mailers/user_mailer.rb", "app/mailers/user_mailer.rb"
+    copy_file "views/user_mailer/account_activation.html.erb", "app/views/user_mailer/account_activation.html.erb"
+    copy_file "views/user_mailer/account_activation.text.erb", "app/views/user_mailer/account_activation.text.erb"
+    copy_file "views/user_mailer/password_reset.html.erb", "app/views/user_mailer/password_reset.html.erb"
+    copy_file "views/user_mailer/password_reset.text.erb", "app/views/user_mailer/password_reset.text.erb"
   end
 
   desc "modify initializer file"
@@ -55,6 +61,7 @@ class InitializerGenerator < Rails::Generators::Base
     end
   end
   root 'welcomes#index'
+  resources :account_activations, only: [:edit]
 RUBY
     end
  
@@ -107,5 +114,22 @@ RUBY
     end
 RUBY
     end
+
+
+    gsub_file 'config/environments/development.rb', 'config.action_mailer.raise_delivery_errors = false', 'config.action_mailer.raise_delivery_errors = true'
+    
+    inject_into_file 'config/environments/development.rb', after: "Rails.application.configure do\n" do <<-'RUBY'
+  config.action_mailer.default_url_options = {host: "localhost:3000"}
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address: "smtp.gmail.com",
+    port: 587,
+    user_name: "zhengjiajun121",
+    password: ENV['gmail_password'],
+    authentication: "plain",
+    enable_starttls_auto: true }
+RUBY
+  end
+
   end
 end

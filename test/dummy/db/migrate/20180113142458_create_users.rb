@@ -9,6 +9,9 @@ class CreateUsers < ActiveRecord::Migration[5.1]
       t.boolean :forbidden, default: false
       t.string :remember_digest
       t.string :avatar
+      t.string :activation_digest
+      t.boolean :activated, default: false
+      t.datetime :activated_at
       t.timestamps
     end
     add_index :users, :email, unique: true
