@@ -17,6 +17,7 @@ class InitializerGenerator < Rails::Generators::Base
     copy_file "controllers/users_controller.rb", "app/controllers/users_controller.rb"
     copy_file "controllers/account_activations_controller.rb", "app/controllers/account_activations_controller.rb"
     copy_file "controllers/welcomes_controller.rb", "app/controllers/welcomes_controller.rb"
+    copy_file "controllers/password_resets_controller.rb", "app/controllers/password_resets_controller.rb"
     copy_file "migrate/20180113142458_create_users.rb", "db/migrate/20180113142458_create_users.rb"
     copy_file "models/user.rb", "app/models/user.rb"
     copy_file "uploaders/avatar_uploader.rb", "app/uploaders/avatar_uploader.rb"
@@ -41,9 +42,9 @@ class InitializerGenerator < Rails::Generators::Base
     copy_file "locales/zh.yml", "config/locales/zh.yml"
     copy_file "mailers/user_mailer.rb", "app/mailers/user_mailer.rb"
     copy_file "views/user_mailer/account_activation.html.erb", "app/views/user_mailer/account_activation.html.erb"
-    copy_file "views/user_mailer/account_activation.text.erb", "app/views/user_mailer/account_activation.text.erb"
     copy_file "views/user_mailer/password_reset.html.erb", "app/views/user_mailer/password_reset.html.erb"
-    copy_file "views/user_mailer/password_reset.text.erb", "app/views/user_mailer/password_reset.text.erb"
+    copy_file "views/password_resets/edit.html.erb", "app/views/password_resets/edit.html.erb"
+    copy_file "views/password_resets/new.html.erb", "app/views/password_resets/new.html.erb"
   end
 
   desc "modify initializer file"
@@ -62,6 +63,7 @@ class InitializerGenerator < Rails::Generators::Base
   end
   root 'welcomes#index'
   resources :account_activations, only: [:edit]
+  resources :password_resets,     only: [:new, :create, :edit, :update]
 RUBY
     end
  
