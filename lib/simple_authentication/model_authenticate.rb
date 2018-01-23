@@ -8,7 +8,7 @@ module SimpleAuthentication
     module ClassMethods
       def model_authenticate
         cattr_accessor :remember_token, :activation_token, :reset_token
-        include SimpleAuthentication::ModelAuthenticate::LocalInstanceMethods      
+        include SimpleAuthentication::ModelAuthenticate::LocalInstanceMethods
       end
 
       def digest(string)
