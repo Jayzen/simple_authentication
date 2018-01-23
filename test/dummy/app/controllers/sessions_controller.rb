@@ -5,11 +5,11 @@ class SessionsController < ApplicationController
   def create
     user = User.find_by(email: params[:session][:email].downcase)
     if user && user.authenticate(params[:session][:password])
-      if user.forbidden?
-        flash.now[:danger] = "用户已经被禁止!"
-        render 'new'
-      elsif user.activated?
+      if !user.activated?
         flash.now[:danger] = "用户未激活!"
+        render 'new'
+      elsif user.forbidden?
+        flash.now[:danger] = "用户被禁止!"
         render 'new'
       else
         log_in user
