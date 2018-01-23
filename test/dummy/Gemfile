@@ -1,5 +1,5 @@
 #source 'https://rubygems.org'
-gem 'bootstrap', '~> 4.0.0.beta3'
+gem 'bootstrap', '~> 4.0.0'
 gem 'font-awesome-rails'
 gem 'bcrypt'
 gem 'jquery-rails'
