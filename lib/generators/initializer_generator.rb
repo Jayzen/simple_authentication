@@ -60,6 +60,7 @@ class InitializerGenerator < Rails::Generators::Base
       post :authorize, :unauthorize, :forbidden, :unforbidden, :avatar_create, :avatar_update
       get :avatar_new
     end
+    get 'search', on: :collection
   end
   root 'welcomes#index'
   resources :account_activations, only: [:edit]

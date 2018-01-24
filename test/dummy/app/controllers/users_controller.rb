@@ -41,17 +41,14 @@ class UsersController < ApplicationController
   end
 
   def avatar_new 
-    
   end
 
   def avatar_create
-    
   end
 
   def avatar_update
-
   end
-  
+
   def destroy
     User.find(params[:id]).destroy
     flash[:success] = "用户已经被删除!"
@@ -60,7 +57,7 @@ class UsersController < ApplicationController
 
   def authorize
     @user.toggle!(:admin)
-    
+
     respond_to do |format|
       format.html { redirect_to @user }
       format.js
@@ -94,6 +91,16 @@ class UsersController < ApplicationController
       format.html { redirect_to @user }
       format.js
     end 
+  end
+
+  def search
+    case params[:category]
+      when 'email'
+        @users = User.where("email like '%#{params[:search]}%'").order("created_at desc").page(params[:page])
+      when 'name'
+        @users = User.where("name like '%#{params[:search]}%'").order("created_at desc").page(params[:page])
+    end
+    render file: 'welcomes/index'
   end
 
   private

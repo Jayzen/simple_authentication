@@ -1,4 +1,5 @@
 <% if logged_in? && current_user.admin? %>
+  <%= render 'welcomes/search' %>
   <table class="table table-striped">
   <thead>
     <tr>
@@ -38,9 +39,9 @@
             </div> 
             <div class="item-h1" id="<%= user.id %>-set-forbidden">
                 <% if user.forbidden? %>
-                  <%= render 'unforbidden', "@user": user %>
+                  <%= render 'welcomes/unforbidden', "@user": user %>
                 <% else %>
-                  <%= render 'forbidden', "@user": user %>
+                  <%= render 'welcomes/forbidden', "@user": user %>
                 <% end %>
               <% end %>
             </div>
