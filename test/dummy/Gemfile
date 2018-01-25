@@ -7,6 +7,8 @@ gem 'kaminari'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'rails-assets-jcrop', source: 'https://rails-assets.org'
+gem 'searchkick'
+gem 'faker'
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")

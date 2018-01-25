@@ -93,28 +93,12 @@ class UsersController < ApplicationController
     end 
   end
 
-  def search
-    case params[:category]
-      when 'email'
-        @users = User.where("email like '%#{params[:search]}%'").order("created_at desc").page(params[:page])
-      when 'name'
-        @users = User.where("name like '%#{params[:search]}%'").order("created_at desc").page(params[:page])
-    end
-    render file: 'welcomes/index'
-  end
-
   private
-
     def find_user
       @user = User.find(params[:id])
     end
 
     def user_params
-      params.require(:user).permit(:name, 
-                                   :email, 
-                                   :password, 
-                                   :password_confirmation,
-                                   :portrait
-                                  )
+      params.require(:user).permit(:name, :email, :password, :password_confirmation,:portrait)
     end
 end

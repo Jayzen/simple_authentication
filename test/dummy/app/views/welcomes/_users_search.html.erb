@@ -1,0 +1,10 @@
+<%= form_tag(users_search_path, method: :get) do %>
+  <div class="input-group mb-4">
+    <div class="col-md-6"></div>
+      <%= text_field_tag :search, nil, placeholder: "输入需要查找的用户名或者邮箱", class: "form-control col-md-4" %>
+      <%= select_tag "category", raw("<option value='email' selected>邮箱</option><option value='name'>用户名</option>"), class: "custom-select col-md-1"%>
+      <div class="input-group-append">
+        <%= submit_tag "搜索", class: "btn btn-outline-secondary" %>
+      </div>
+  </div>
+<% end %>

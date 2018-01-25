@@ -35,7 +35,12 @@ class InitializerGenerator < Rails::Generators::Base
     copy_file "views/users/unforbidden.js.erb", "app/views/users/unforbidden.js.erb"
     copy_file "views/welcomes/_unforbidden.html.erb", "app/views/welcomes/_unforbidden.html.erb"
     copy_file "views/welcomes/_forbidden.html.erb", "app/views/welcomes/_forbidden.html.erb"
-    copy_file "views/welcomes/_search.html.erb", "app/views/welcomes/_search.html.erb"
+    copy_file "views/welcomes/_users_search.html.erb", "app/views/welcomes/_users_search.html.erb"
+    copy_file "views/welcomes/_articles_search.html.erb", "app/views/welcomes/_articles_search.html.erb"
+    copy_file "views/welcomes/_page.html.erb", "app/views/welcomes/_page.html.erb"
+    copy_file "views/welcomes/_users.html.erb", "app/views/welcomes/_users.html.erb"
+    copy_file "views/welcomes/_articles.html.erb", "app/views/welcomes/_articles.html.erb"
+    copy_file "views/welcomes/_articles_search.html.erb", "app/views/welcomes/_articles_search.html.erb"
     copy_file "views/users/avatar_new.html.erb", "app/views/users/avatar_new.html.erb"
     copy_file "views/users/crop.html.erb", "app/views/users/crop.html.erb"
     copy_file "views/welcomes/index.html.erb", "app/views/welcomes/index.html.erb"
@@ -45,6 +50,9 @@ class InitializerGenerator < Rails::Generators::Base
     copy_file "views/user_mailer/password_reset.html.erb", "app/views/user_mailer/password_reset.html.erb"
     copy_file "views/password_resets/edit.html.erb", "app/views/password_resets/edit.html.erb"
     copy_file "views/password_resets/new.html.erb", "app/views/password_resets/new.html.erb"
+    copy_file "migrate/20180125114459_create_articles.rb", "db/migrate/20180125114459_create_articles.rb"
+    copy_file "models/article.rb", "app/models/article.rb"
+    copy_file "controllers/articles_controller.rb", "app/controllers/articles_controller.rb"
   end
 
   desc "modify initializer file"
@@ -65,6 +73,9 @@ class InitializerGenerator < Rails::Generators::Base
   root 'welcomes#index'
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
+  resources :articles
+  get 'articles_search', to: "welcomes#articles_search"
+  get 'users_search', to: "welcomes#users_search"
 RUBY
     end
  
@@ -103,6 +114,7 @@ gem 'kaminari'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'rails-assets-jcrop', source: 'https://rails-assets.org'
+gem 'searchkick'
 RUBY
     end
 
