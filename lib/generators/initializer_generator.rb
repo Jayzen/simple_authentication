@@ -44,7 +44,8 @@ class InitializerGenerator < Rails::Generators::Base
     copy_file "views/users/avatar_new.html.erb", "app/views/users/avatar_new.html.erb"
     copy_file "views/users/crop.html.erb", "app/views/users/crop.html.erb"
     copy_file "views/welcomes/index.html.erb", "app/views/welcomes/index.html.erb"
-    copy_file "locales/zh.yml", "config/locales/zh.yml"
+    copy_file "config/locales/zh.yml", "config/locales/zh.yml"
+    copy_file "config/initializers/friendly_id.rb", "config/initializers/friendly_id.rb"
     copy_file "mailers/user_mailer.rb", "app/mailers/user_mailer.rb"
     copy_file "views/user_mailer/account_activation.html.erb", "app/views/user_mailer/account_activation.html.erb"
     copy_file "views/user_mailer/password_reset.html.erb", "app/views/user_mailer/password_reset.html.erb"
@@ -58,6 +59,7 @@ class InitializerGenerator < Rails::Generators::Base
     copy_file "views/articles/index.html.erb", "app/views/articles/index.html.erb"
     copy_file "views/articles/_errors.html.erb", "app/views/articles/_errors.html.erb"
     copy_file "views/articles/_article.html.erb", "app/views/articles/_article.html.erb"
+    copy_file "migrate/20180126084126_create_friendly_id_slugs.rb", "db/migrate/20180126084126_create_friendly_id_slugs.rb"
   end
 
   desc "modify initializer file"
@@ -120,6 +122,8 @@ gem 'carrierwave'
 gem 'mini_magick'
 gem 'rails-assets-jcrop', source: 'https://rails-assets.org'
 gem 'searchkick'
+gem 'friendly_id'
+gem 'babosa'
 RUBY
     end
 

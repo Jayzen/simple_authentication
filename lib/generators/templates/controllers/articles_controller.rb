@@ -4,6 +4,9 @@ class ArticlesController < ApplicationController
   before_action :correct_user, only: [:edit, :update, :destroy]
 
   def show
+    if request.path != article_path(@article) #当访问旧值时，链接地址会自动跳到更新后的新值中
+      redirect_to @article, :status => :moved_permanently
+    end
   end
 
   def new
@@ -26,6 +29,7 @@ class ArticlesController < ApplicationController
   end
 
   def update
+    @article.slug = nil
     @article.user_id = params[:user_id]
     if @article.update(article_params)
       redirect_to @article
@@ -47,7 +51,7 @@ class ArticlesController < ApplicationController
 
   private
     def set_article
-      @article = Article.find(params[:id])
+      @article = Article.friendly.find(params[:id])
     end
 
     def article_params
@@ -55,7 +59,7 @@ class ArticlesController < ApplicationController
     end
 
     def correct_user
-      @article = current_user.articles.find_by(id: params[:id])
+      @article = current_user.articles.friendly.find(params[:id])
       redirect_to root_url if @article.nil?
     end
 end

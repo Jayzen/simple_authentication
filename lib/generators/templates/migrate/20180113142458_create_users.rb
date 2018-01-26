@@ -14,8 +14,10 @@ class CreateUsers < ActiveRecord::Migration[5.1]
       t.datetime :activated_at
       t.string :reset_digest
       t.datetime :reset_sent_at
+      t.string :slug
       t.timestamps
     end
     add_index :users, :email, unique: true
+    add_index :users, :slug, unique: true
   end
 end
