@@ -10,6 +10,9 @@ class UsersController < ApplicationController
   before_action :superadmin_user, only: [:authorize, :unauthorize]
 
   def show
+    if request.path != user_path(@user)
+      redirect_to @user, :status => :moved_permanently
+    end
   end
 
   def new
@@ -26,18 +29,22 @@ class UsersController < ApplicationController
       render 'new'
     end
   end
-  
+
   def edit
-    render action: :new
+    debugger
   end
 
   def update
+    @user.slug = nil
     if @user.update_attributes(user_params)
       flash[:success] = "用户更新成功!"
       redirect_to @user
     else
       render 'new'
     end
+  end
+  
+  def index
   end
 
   def avatar_new 
@@ -86,7 +93,7 @@ class UsersController < ApplicationController
 
   def unauthorize
     @user.toggle!(:admin)
-    
+
     respond_to do |format|
       format.html { redirect_to @user }
       format.js
@@ -95,7 +102,7 @@ class UsersController < ApplicationController
 
   private
     def find_user
-      @user = User.find(params[:id])
+      @user = User.friendly.find(params[:id])
     end
 
     def user_params
