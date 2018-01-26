@@ -4,14 +4,14 @@
   <%= link_to "SimpleAuth", root_path, class: "navbar-brand" %>
         <ul class="navbar-nav">
           <% if logged_in? %>
-            <li class="nva-item nav-link">
-              <i class="fa fa-search" aria-hidden="true"></i>
-            </li>
             <li class="nav-item dropdown">
               <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><%= current_user.name %></a>
               <div class="dropdown-menu">
-                <%= link_to "编辑", edit_user_path(current_user), class: "dropdown-item" %>
                 <%= link_to "退出", logout_path, method: "delete", class: "dropdown-item" %>
+                <%= link_to "查看", user_path(current_user), class: "dropdown-item" %>
+                <%= link_to "编辑", edit_user_path(current_user), class: "dropdown-item" %>
+                <%= link_to "发布文章", new_article_path, class: "dropdown-item" %>
+                <%= link_to "文章列表", articles_path, class: "dropdown-item" %>
               </div>
             </li>
           <% else %>

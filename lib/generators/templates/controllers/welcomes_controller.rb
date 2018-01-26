@@ -1,7 +1,7 @@
 class WelcomesController < ApplicationController
   def index
     @users = User.order("created_at desc").page(params[:page])
-    @articles = Article.order("created_at desc").page(params[:page])
+    @articles = Article.includes(:user).order("created_at desc").page(params[:page])
   end
 
   def users_search
@@ -19,7 +19,7 @@ class WelcomesController < ApplicationController
     @articles = if search
       Article.search(search, fields: [:title, :content])
     else
-      Article.Article.order("created_at desc").page(params[:page])
+      Article.order("created_at desc").page(params[:page])
     end 
     render 'index'
   end

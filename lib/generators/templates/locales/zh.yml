@@ -53,6 +53,9 @@ zh:
         email: "邮箱"
         password: "密码"
         password_confirmation: "密码确认"
+      article:
+        title: "标题"
+        content: "内容"
     errors:
       models:
         user:
@@ -68,3 +71,9 @@ zh:
               too_short: "密码字符太短"
             password_confirmation:
               confirmation: "两次密码不一致"
+        article:
+          attributes:
+            title:
+              blank: "标题不能为空"
+            content:
+              blank: "内容不能为空"

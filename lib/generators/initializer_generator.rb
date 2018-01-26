@@ -53,6 +53,11 @@ class InitializerGenerator < Rails::Generators::Base
     copy_file "migrate/20180125114459_create_articles.rb", "db/migrate/20180125114459_create_articles.rb"
     copy_file "models/article.rb", "app/models/article.rb"
     copy_file "controllers/articles_controller.rb", "app/controllers/articles_controller.rb"
+    copy_file "views/articles/new.html.erb", "app/views/articles/new.html.erb"
+    copy_file "views/articles/show.html.erb", "app/views/articles/show.html.erb"
+    copy_file "views/articles/index.html.erb", "app/views/articles/index.html.erb"
+    copy_file "views/articles/_errors.html.erb", "app/views/articles/_errors.html.erb"
+    copy_file "views/articles/_article.html.erb", "app/views/articles/_article.html.erb"
   end
 
   desc "modify initializer file"
