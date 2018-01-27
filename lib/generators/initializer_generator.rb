@@ -6,6 +6,7 @@ class InitializerGenerator < Rails::Generators::Base
   def remove_initializer_file
     remove_file "app/assets/stylesheets/application.css"
     remove_file "app/views/layouts/application.html.erb"
+    remove_file "app/views/layouts/mailer.html.erb"
   end
 
   desc "copy initializer file"
@@ -48,8 +49,8 @@ class InitializerGenerator < Rails::Generators::Base
     copy_file "config/locales/zh.yml", "config/locales/zh.yml"
     copy_file "config/initializers/friendly_id.rb", "config/initializers/friendly_id.rb"
     copy_file "mailers/user_mailer.rb", "app/mailers/user_mailer.rb"
-    copy_file "views/user_mailer/account_activation.html.erb", "app/views/user_mailer/account_activation.html.erb"
-    copy_file "views/user_mailer/password_reset.html.erb", "app/views/user_mailer/password_reset.html.erb"
+    copy_file "views/user_mailer/account_activation.html.inky", "app/views/user_mailer/account_activation.html.inky"
+    copy_file "views/user_mailer/password_reset.html.inky", "app/views/user_mailer/password_reset.html.inky"
     copy_file "views/password_resets/edit.html.erb", "app/views/password_resets/edit.html.erb"
     copy_file "views/password_resets/new.html.erb", "app/views/password_resets/new.html.erb"
     copy_file "migrate/20180125114459_create_articles.rb", "db/migrate/20180125114459_create_articles.rb"
@@ -61,6 +62,8 @@ class InitializerGenerator < Rails::Generators::Base
     copy_file "views/articles/_errors.html.erb", "app/views/articles/_errors.html.erb"
     copy_file "views/articles/_article.html.erb", "app/views/articles/_article.html.erb"
     copy_file "migrate/20180126084126_create_friendly_id_slugs.rb", "db/migrate/20180126084126_create_friendly_id_slugs.rb"
+    copy_file "views/layouts/mailer.html.erb", "app/views/layouts/mailer.html.erb"
+    copy_file "assets/foundation_emails.scss", "vendor/assets/stylesheets/foundation_emails.scss"
   end
 
   desc "modify initializer file"
@@ -125,6 +128,8 @@ gem 'rails-assets-jcrop', source: 'https://rails-assets.org'
 gem 'searchkick'
 gem 'friendly_id'
 gem 'babosa'
+gem 'inky-rb', require: 'inky'
+gem 'premailer-rails'
 RUBY
     end
 
@@ -153,6 +158,12 @@ RUBY
     password: ENV['gmail_password'],
     authentication: "plain",
     enable_starttls_auto: true }
+RUBY
+  end
+
+  inject_into_file 'config/initializers/assets.rb',
+                    after: "# Rails.application.config.assets.precompile += %w( admin.js admin.css )\n" do <<-'RUBY'
+Rails.application.config.assets.precompile += %w( foundation_emails.scss )
 RUBY
   end
 

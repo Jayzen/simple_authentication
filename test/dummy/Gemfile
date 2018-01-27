@@ -10,6 +10,8 @@ gem 'rails-assets-jcrop', source: 'https://rails-assets.org'
 gem 'searchkick'
 gem 'friendly_id'
 gem 'babosa'
+gem 'inky-rb', require: 'inky'
+gem 'premailer-rails'
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
