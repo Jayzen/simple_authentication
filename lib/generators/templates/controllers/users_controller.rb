@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :find_user, only: [:show, :edit, :update, 
+  before_action :find_user, only: [:show, :update, :edit, 
                                    :authorize, :unauthorize,
                                    :avatar_new, :avatar_create, :avatar_update]
   before_action :logged_in_user, only: [:edit, :update, :destroy, :show,
@@ -31,7 +31,7 @@ class UsersController < ApplicationController
   end
   
   def edit
-    debugger
+    render 'new'
   end
 
   def update

@@ -1,6 +1,8 @@
 <h6><%= @article.title %></h6>
 <p><%= @article.content %></p>
-<%= link_to '编辑', edit_article_path(@article), class: "btn btn-outline-secondary" %>
+<% if @article.user == current_user %>
+  <%= link_to '编辑', edit_article_path(@article), class: "btn btn-outline-secondary" %>
+<% end %>
 <%= link_to '新建文章', new_article_path, class: "btn btn-outline-secondary" %>
 <%= link_to "文章列表", articles_path, class: "btn btn-outline-secondary" %>
 
