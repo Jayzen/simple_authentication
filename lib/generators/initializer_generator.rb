@@ -19,6 +19,7 @@ class InitializerGenerator < Rails::Generators::Base
     copy_file "controllers/account_activations_controller.rb", "app/controllers/account_activations_controller.rb"
     copy_file "controllers/welcomes_controller.rb", "app/controllers/welcomes_controller.rb"
     copy_file "controllers/password_resets_controller.rb", "app/controllers/password_resets_controller.rb"
+    copy_file "controllers/portraits_controller.rb", "app/controllers/portraits_controller.rb"
     copy_file "migrate/20180113142458_create_users.rb", "db/migrate/20180113142458_create_users.rb"
     copy_file "models/user.rb", "app/models/user.rb"
     copy_file "uploaders/avatar_uploader.rb", "app/uploaders/avatar_uploader.rb"
@@ -43,8 +44,9 @@ class InitializerGenerator < Rails::Generators::Base
     copy_file "views/welcomes/_users.html.erb", "app/views/welcomes/_users.html.erb"
     copy_file "views/welcomes/_articles.html.erb", "app/views/welcomes/_articles.html.erb"
     copy_file "views/welcomes/_articles_search.html.erb", "app/views/welcomes/_articles_search.html.erb"
-    copy_file "views/users/avatar_new.html.erb", "app/views/users/avatar_new.html.erb"
-    copy_file "views/users/crop.html.erb", "app/views/users/crop.html.erb"
+    copy_file "views/portraits/new.html.erb", "app/views/portraits/new.html.erb"
+    copy_file "views/portraits/show.html.erb", "app/views/portraits/show.html.erb"
+    copy_file "views/portraits/crop.html.erb", "app/views/portraits/crop.html.erb"
     copy_file "views/welcomes/index.html.erb", "app/views/welcomes/index.html.erb"
     copy_file "config/locales/zh.yml", "config/locales/zh.yml"
     copy_file "config/initializers/friendly_id.rb", "config/initializers/friendly_id.rb"
@@ -76,14 +78,14 @@ class InitializerGenerator < Rails::Generators::Base
   delete '/logout',  to: 'sessions#destroy'
   resources :users do
     member do
-      post :authorize, :unauthorize, :forbidden, :unforbidden, :avatar_create, :avatar_update
-      get :avatar_new
+      post :authorize, :unauthorize, :forbidden, :unforbidden
     end
     get 'search', on: :collection
   end
   root 'welcomes#index'
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
+  resources :portraits,            only: [:new, :create, :show]
   resources :articles
   get 'articles_search', to: "welcomes#articles_search"
   get 'users_search', to: "welcomes#users_search"

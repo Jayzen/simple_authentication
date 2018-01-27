@@ -29,7 +29,7 @@ class UsersController < ApplicationController
       render 'new'
     end
   end
-  
+
   def edit
     render 'new'
   end
@@ -43,17 +43,8 @@ class UsersController < ApplicationController
       render 'new'
     end
   end
-  
+
   def index
-  end
-
-  def avatar_new 
-  end
-
-  def avatar_create
-  end
-
-  def avatar_update
   end
 
   def destroy

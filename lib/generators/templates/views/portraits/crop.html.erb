@@ -8,13 +8,13 @@
       <div class="panel-body">
         <%= image_tag @user.avatar_url(:large), id: "cropbox" %>
         <br>
-        <%= simple_form_for(@user) do |f| %>
+        <%= form_for(:portrait, url: portraits_path) do |f| %>
           <% %w[x y w h].each do |attribute| %>
-            <%= f.input "crop_#{attribute}", as: :hidden %>
+            <%= f.hidden_field "crop_#{attribute}" %>
           <% end %>
-
+          <input type="hidden" name="user_id" value="<%= current_user.id %>" />
           <div class="form-actions">
-            <%= f.button :submit %>
+            <%= f.submit :submit %>
           </div>
         <% end %>
 
