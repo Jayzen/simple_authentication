@@ -15,10 +15,10 @@ class AvatarCrop
       onChange: @update
 
   update: (coords) =>
-    $('#user_crop_x').val(coords.x)
-    $('#user_crop_y').val(coords.y)
-    $('#user_crop_w').val(coords.w)
-    $('#user_crop_h').val(coords.h)
+    $('#portrait_crop_x').val(coords.x)
+    $('#portrait_crop_y').val(coords.y)
+    $('#portrait_crop_w').val(coords.w)
+    $('#portrait_crop_h').val(coords.h)
     @updatePreview(coords)
 
   updatePreview: (coords) =>

@@ -5,19 +5,31 @@ class PortraitsController < ApplicationController
   end
 
   def create
-    @user = User.find(params[:user_id])
     if @user.update_attributes(user_params)
       if params[:portrait][:avatar].present?
         render :crop
       else
         redirect_to portrait_path(current_user.id)
-        flash[:danger] = "头像更新成功!"
+        flash[:success] = "头像上传成功!"
       end
     else
       render :new
     end
   end
-  
+
+  def update
+    if @user.update_attributes(user_params)
+      if params[:portrait][:avatar].present?
+        render :crop
+      else
+        redirect_to portrait_path(current_user.id)
+        flash[:success] = "头像裁剪成功!"
+      end
+    else
+      render :new
+    end
+  end
+ 
   def show
   end
 

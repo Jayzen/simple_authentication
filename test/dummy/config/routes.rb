@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   root 'welcomes#index'
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
-  resources :portraits,            only: [:new, :create, :show]
+  resources :portraits,            only: [:new, :create, :show, :update]
   resources :articles
   get 'articles_search', to: "welcomes#articles_search"
   get 'users_search', to: "welcomes#users_search"

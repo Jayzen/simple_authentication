@@ -8,9 +8,9 @@
       <div class="card-body">
         <%= image_tag @user.avatar_url(:large), id: "cropbox" %>
         <br>
-        <%= form_for(:portrait, url: portraits_path) do |f| %>
+        <%= form_for(:portrait, url: portrait_path(@user), method: :put) do |f| %>
           <% %w[x y w h].each do |attribute| %>
-            <%= f.hidden_field "crop_#{attribute}" %>
+            <%= f.hidden_field "crop_#{attribute}", id: "portrait_crop_#{attribute}" %>
           <% end %>
           <input type="hidden" name="user_id" value="<%= current_user.id %>" />
           <%= f.submit "提交裁剪", class: "btn btn-primary" %>
