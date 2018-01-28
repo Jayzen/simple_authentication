@@ -5,7 +5,13 @@
         <ul class="navbar-nav">
           <% if logged_in? %>
             <li class="nav-item dropdown">
-              <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><%= current_user.name %></a>
+              <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+                <% if current_user.avatar.nil? %>
+                  <%= image_tag "kumamon.jpeg", size: "25x25", class: "rounded-circle" %>
+                <% else %>
+                  <%= image_tag current_user.avatar.tiny.url, class: "rounded-circle" %>
+                <% end %>
+              </a>
               <div class="dropdown-menu">
                 <%= link_to "退出", logout_path, method: "delete", class: "dropdown-item" %>
                 <%= link_to "查看", user_path(current_user), class: "dropdown-item" %>
