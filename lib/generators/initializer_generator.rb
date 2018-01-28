@@ -45,7 +45,6 @@ class InitializerGenerator < Rails::Generators::Base
     copy_file "views/welcomes/_articles.html.erb", "app/views/welcomes/_articles.html.erb"
     copy_file "views/welcomes/_articles_search.html.erb", "app/views/welcomes/_articles_search.html.erb"
     copy_file "views/portraits/new.html.erb", "app/views/portraits/new.html.erb"
-    copy_file "views/portraits/show.html.erb", "app/views/portraits/show.html.erb"
     copy_file "views/portraits/crop.html.erb", "app/views/portraits/crop.html.erb"
     copy_file "views/welcomes/index.html.erb", "app/views/welcomes/index.html.erb"
     copy_file "config/locales/zh.yml", "config/locales/zh.yml"
@@ -86,7 +85,7 @@ class InitializerGenerator < Rails::Generators::Base
   root 'welcomes#index'
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
-  resources :portraits,            only: [:new, :create, :show, :update]
+  resources :portraits,            only: [:new, :create, :update]
   resources :articles
   get 'articles_search', to: "welcomes#articles_search"
   get 'users_search', to: "welcomes#users_search"
