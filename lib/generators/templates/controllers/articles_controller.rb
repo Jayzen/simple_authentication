@@ -51,7 +51,7 @@ class ArticlesController < ApplicationController
 
   private
     def set_article
-      @article = Article.friendly.find(params[:id])
+      @article = Article.includes(:user).friendly.find(params[:id])
     end
 
     def article_params
