@@ -65,7 +65,7 @@ class InitializerGenerator < Rails::Generators::Base
     copy_file "migrate/20180126084126_create_friendly_id_slugs.rb", "db/migrate/20180126084126_create_friendly_id_slugs.rb"
     copy_file "views/layouts/mailer.html.erb", "app/views/layouts/mailer.html.erb"
     copy_file "assets/foundation_emails.scss", "vendor/assets/stylesheets/foundation_emails.scss"
-   copy_file "assets/kumamon.jpeg", "app/assets/images/kumamon.jpeg"
+   copy_file "assets/avatar.jpeg", "app/assets/images/avatar.jpeg"
   end
 
   desc "modify initializer file"

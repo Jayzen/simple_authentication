@@ -33,7 +33,11 @@
   <div class="card-body">
     <h4 class="card-title">邮箱</h4>
     <p class="card-text"><%= @user.email %></p>
-    <p><%= image_tag @user.avatar.thumb.url %></p>
+    <% if @user.avatar.to_s.size == 0 %>
+      <p><%= image_tag "avatar.jpeg", size: "25x25", class: "rounded-circle" %></p>
+    <% else %>
+      <p><%= image_tag @user.avatar.thumb.url %></p>
+    <% end %>
   </div>
 </div>
 
