@@ -23,7 +23,11 @@
       <% end %>
       <% unless @articles.size == 0 %>
         <td></td>
-        <td><%= submit_tag "全部删除", class: "btn btn-sm btn-outline-secondary" %></td>
+        <td>
+          <%= link_to "全部选中", "#", class: "btn btn-sm btn-outline-secondary" %>
+          <%= link_to "取消选中", "#", class: "btn btn-sm btn-outline-secondary" %>
+          <%= submit_tag "删除选中项", class: "btn btn-sm btn-outline-secondary", id: "remove_select" %>
+        </td>
         <td></td>
         <td></td>
         <td></td>
