@@ -13,59 +13,27 @@ class InitializerGenerator < Rails::Generators::Base
   def copy_initializer_file
     copy_file "assets/application.scss", "app/assets/stylesheets/application.scss"
     copy_file "assets/avatar.coffee", "app/assets/javascripts/avatar.coffee"
-    copy_file "views/layouts/application.html.erb", "app/views/layouts/application.html.erb"
-    copy_file "controllers/sessions_controller.rb", "app/controllers/sessions_controller.rb"
-    copy_file "controllers/users_controller.rb", "app/controllers/users_controller.rb"
-    copy_file "controllers/account_activations_controller.rb", "app/controllers/account_activations_controller.rb"
-    copy_file "controllers/welcomes_controller.rb", "app/controllers/welcomes_controller.rb"
-    copy_file "controllers/password_resets_controller.rb", "app/controllers/password_resets_controller.rb"
-    copy_file "controllers/portraits_controller.rb", "app/controllers/portraits_controller.rb"
-    copy_file "migrate/20180113142458_create_users.rb", "db/migrate/20180113142458_create_users.rb"
-    copy_file "models/user.rb", "app/models/user.rb"
-    copy_file "uploaders/avatar_uploader.rb", "app/uploaders/avatar_uploader.rb"
-    copy_file "views/sessions/new.html.erb", "app/views/sessions/new.html.erb"
-    copy_file "views/shared/_errors.html.erb", "app/views/shared/_errors.html.erb"
-    copy_file "views/shared/_navbar.html.erb", "app/views/shared/_navbar.html.erb"
-    copy_file "views/shared/_flash.html.erb", "app/views/shared/_flash.html.erb"
-    copy_file "views/users/new.html.erb", "app/views/users/new.html.erb"
-    copy_file "views/users/show.html.erb", "app/views/users/show.html.erb"
-    copy_file "views/users/index.html.erb", "app/views/users/index.html.erb"
-    copy_file "views/users/_authorize.html.erb", "app/views/users/_authorize.html.erb"
-    copy_file "views/users/_unauthorize.html.erb", "app/views/users/_unauthorize.html.erb"
-    copy_file "views/users/authorize.js.erb", "app/views/users/authorize.js.erb"
-    copy_file "views/users/unauthorize.js.erb", "app/views/users/unauthorize.js.erb"
-    copy_file "views/users/forbidden.js.erb", "app/views/users/forbidden.js.erb"
-    copy_file "views/users/unforbidden.js.erb", "app/views/users/unforbidden.js.erb"
-    copy_file "views/welcomes/_unforbidden.html.erb", "app/views/welcomes/_unforbidden.html.erb"
-    copy_file "views/welcomes/_forbidden.html.erb", "app/views/welcomes/_forbidden.html.erb"
-    copy_file "views/welcomes/_users_search.html.erb", "app/views/welcomes/_users_search.html.erb"
-    copy_file "views/welcomes/_articles_search.html.erb", "app/views/welcomes/_articles_search.html.erb"
-    copy_file "views/welcomes/_page.html.erb", "app/views/welcomes/_page.html.erb"
-    copy_file "views/welcomes/_users.html.erb", "app/views/welcomes/_users.html.erb"
-    copy_file "views/welcomes/_articles.html.erb", "app/views/welcomes/_articles.html.erb"
-    copy_file "views/welcomes/_articles_search.html.erb", "app/views/welcomes/_articles_search.html.erb"
-    copy_file "views/portraits/new.html.erb", "app/views/portraits/new.html.erb"
-    copy_file "views/portraits/crop.html.erb", "app/views/portraits/crop.html.erb"
-    copy_file "views/welcomes/index.html.erb", "app/views/welcomes/index.html.erb"
-    copy_file "config/locales/zh.yml", "config/locales/zh.yml"
-    copy_file "config/initializers/friendly_id.rb", "config/initializers/friendly_id.rb"
-    copy_file "mailers/user_mailer.rb", "app/mailers/user_mailer.rb"
-    copy_file "views/user_mailer/account_activation.html.inky", "app/views/user_mailer/account_activation.html.inky"
-    copy_file "views/user_mailer/password_reset.html.inky", "app/views/user_mailer/password_reset.html.inky"
-    copy_file "views/password_resets/edit.html.erb", "app/views/password_resets/edit.html.erb"
-    copy_file "views/password_resets/new.html.erb", "app/views/password_resets/new.html.erb"
-    copy_file "migrate/20180125114459_create_articles.rb", "db/migrate/20180125114459_create_articles.rb"
-    copy_file "models/article.rb", "app/models/article.rb"
-    copy_file "controllers/articles_controller.rb", "app/controllers/articles_controller.rb"
-    copy_file "views/articles/new.html.erb", "app/views/articles/new.html.erb"
-    copy_file "views/articles/show.html.erb", "app/views/articles/show.html.erb"
-    copy_file "views/articles/index.html.erb", "app/views/articles/index.html.erb"
-    copy_file "views/articles/_errors.html.erb", "app/views/articles/_errors.html.erb"
-    copy_file "views/articles/_article.html.erb", "app/views/articles/_article.html.erb"
-    copy_file "migrate/20180126084126_create_friendly_id_slugs.rb", "db/migrate/20180126084126_create_friendly_id_slugs.rb"
-    copy_file "views/layouts/mailer.html.erb", "app/views/layouts/mailer.html.erb"
     copy_file "assets/foundation_emails.scss", "vendor/assets/stylesheets/foundation_emails.scss"
-   copy_file "assets/avatar.jpeg", "app/assets/images/avatar.jpeg"
+    copy_file "assets/avatar.jpeg", "app/assets/images/avatar.jpeg"
+
+    copy_file "views/sessions/new.html.erb", "app/views/sessions/new.html.erb"
+    directory "views/shared", "app/views/shared"
+    directory "views/users", "app/views/users"
+    directory "views/portraits", "app/views/portraits"
+    directory "views/welcomes", "app/views/welcomes"
+    directory "views/user_mailer", "app/views/user_mailer"
+    directory "views/password_resets", "app/views/password_resets"
+    directory "views/articles", "app/views/articles"
+    directory "views/layouts", "app/views/layouts"
+
+    copy_file "mailers/user_mailer.rb", "app/mailers/user_mailer.rb"
+    copy_file "uploaders/avatar_uploader.rb", "app/uploaders/avatar_uploader.rb"
+    directory "views/kaminari", "app/views/kaminari"
+    directory "migrate", "db/migrate"
+    directory "models", "app/models"
+    directory "controllers", "app/controllers"
+    directory "config/initializers", "config/initializers"
+    copy_file "config/locales/zh.yml", "config/locales/zh.yml"
   end
 
   desc "modify initializer file"
@@ -86,12 +54,16 @@ class InitializerGenerator < Rails::Generators::Base
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :portraits,            only: [:new, :create, :update]
-  resources :articles
+  resources :articles do
+    collection do
+      delete :remove_select
+    end
+  end
   get 'articles_search', to: "welcomes#articles_search"
   get 'users_search', to: "welcomes#users_search"
 RUBY
     end
- 
+
     inject_into_file 'app/assets/javascripts/application.js', after: "//= require turbolinks\n" do <<-'RUBY'
 //= require jquery3
 //= require popper

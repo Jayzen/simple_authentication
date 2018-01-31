@@ -14,7 +14,11 @@ Rails.application.routes.draw do
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :portraits,            only: [:new, :create, :update]
-  resources :articles
+  resources :articles do
+    collection do
+      delete :remove_select
+    end
+  end
   get 'articles_search', to: "welcomes#articles_search"
   get 'users_search', to: "welcomes#users_search"
 end

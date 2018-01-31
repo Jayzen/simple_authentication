@@ -48,6 +48,15 @@ class ArticlesController < ApplicationController
     redirect_to articles_url 
     flash[:success] = '文章删除成功!'
   end
+  
+  def remove_select
+    @articles = Article.find(params[:article_ids])
+    @articles.each do |article|
+      article.destroy
+    end
+    redirect_to articles_url
+    flash[:success] = '选中的文章被全部删除!'
+  end
 
   private
     def set_article
@@ -55,7 +64,7 @@ class ArticlesController < ApplicationController
     end
 
     def article_params
-      params.require(:article).permit(:title, :content)
+      params.require(:article).permit(:title, :content, {article_ids: []})
     end
 
     def correct_user
