@@ -50,12 +50,17 @@ class ArticlesController < ApplicationController
   end
   
   def remove_select
-    @articles = Article.find(params[:article_ids])
-    @articles.each do |article|
-      article.destroy
+    unless params[:article_ids].nil?
+      @articles = Article.find(params[:article_ids])
+      @articles.each do |article|
+        article.destroy
+      end
+      redirect_to articles_url
+      flash[:success] = '选中的文章被全部删除!'
+    else
+      redirect_to articles_url
+      flash[:danger] = "文章未被选择!"
     end
-    redirect_to articles_url
-    flash[:success] = '选中的文章被全部删除!'
   end
 
   private

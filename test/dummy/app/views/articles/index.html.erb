@@ -12,7 +12,7 @@
     <tbody>
       <% @articles.each do |article| %>
         <tr class="text-secondary">
-          <td><%= check_box_tag "[article_ids][]", article.id %></td>
+          <td><%= check_box_tag "[article_ids][]", article.id, false, class: "selectable" %></td>
           <td><%=link_to "#{article.title}", article_path(article), class: "text-secondary" %></td>
           <td><small><%= article.updated_at.to_s(:db) %></small></td>
           <% if current_user == article.user %>
@@ -23,9 +23,8 @@
       <% end %>
       <% unless @articles.size == 0 %>
         <td></td>
-        <td>
-          <%= link_to "全部选中", "#", class: "btn btn-sm btn-outline-secondary" %>
-          <%= link_to "取消选中", "#", class: "btn btn-sm btn-outline-secondary" %>
+        <td class="text-secondary">
+          <input type="checkbox" id="selectAll"><small>全选或取消&nbsp</small></input>
           <%= submit_tag "删除选中项", class: "btn btn-sm btn-outline-secondary", id: "remove_select" %>
         </td>
         <td></td>
@@ -36,3 +35,9 @@
   </table>
 <% end %>
 <%= paginate @articles %>
+
+<%= content_for :javascripts do %>
+  <script>
+      $("#selectAll").select_all();
+  </script>
+<% end %>

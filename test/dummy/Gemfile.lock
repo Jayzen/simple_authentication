@@ -202,6 +202,7 @@ GEM
       activemodel (>= 4.1)
       elasticsearch (>= 1)
       hashie
+    select_all-rails (0.3.2)
     selenium-webdriver (3.8.0)
       childprocess (~> 0.5)
       rubyzip (~> 1.0)
@@ -264,6 +265,7 @@ DEPENDENCIES
   rails-assets-jcrop!
   sass-rails (~> 5.0)
   searchkick
+  select_all-rails
   selenium-webdriver
   spring
   spring-watcher-listen (~> 2.0.0)

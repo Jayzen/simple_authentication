@@ -70,6 +70,7 @@ RUBY
 //= require bootstrap
 //= require jcrop
 //= require avatar
+//= require select_all.js
 RUBY
     end
 
@@ -104,6 +105,7 @@ gem 'friendly_id'
 gem 'babosa'
 gem 'inky-rb', require: 'inky'
 gem 'premailer-rails'
+gem 'select_all-rails'
 RUBY
     end
 
