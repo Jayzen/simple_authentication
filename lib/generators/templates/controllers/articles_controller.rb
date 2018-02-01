@@ -20,11 +20,11 @@ class ArticlesController < ApplicationController
   def create
     @article = Article.new(article_params)
     @article.user_id = params[:user_id]
-    if @article.save
+    if params[:preview] || !@article.save
+      render :new
+    else
       redirect_to @article
       flash[:success] = "文章发布成功!"
-    else
-      render :new
     end
   end
 
