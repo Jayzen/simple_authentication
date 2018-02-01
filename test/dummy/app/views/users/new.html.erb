@@ -4,26 +4,26 @@
                method: (@user.new_record? ? 'post' : 'put')
               ) do |f| %>
   <div class="form-group row">
-    <label class="col-sm-2 col-form-label">用户名</label>
+    <label class="col-sm-2 col-form-label text-secondary">用户名</label>
     <div class="col-sm-10">
       <%= f.text_field :name, class: "form-control" %>
     </div>
   </div>
   
   <div class="form-group row">
-    <label class="col-sm-2 col-form-label">邮箱</label>
+    <label class="col-sm-2 col-form-label text-secondary">邮箱</label>
     <div class="col-sm-10">
       <%= f.email_field :email, class: "form-control" %>
     </div>
   </div>
   <div class="form-group row">
-    <label class="col-sm-2 col-form-label">密码</label>
+    <label class="col-sm-2 col-form-label text-secondary">密码</label>
     <div class="col-sm-10">
       <%= f.password_field :password, class: "form-control" %>
     </div>
   </div>
   <div class="form-group row">
-    <label class="col-sm-2 col-form-label">密码确认</label>
+    <label class="col-sm-2 col-form-label text-secondary">密码确认</label>
     <div class="col-sm-10">
       <%= f.password_field :password_confirmation, class: "form-control" %>
     </div>
