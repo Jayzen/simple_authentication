@@ -13,7 +13,8 @@ Rails.application.routes.draw do
   root 'welcomes#index'
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
-  resources :portraits,            only: [:new, :create, :update]
+  resources :password_alters,     only: [:edit, :update]
+  resources :portraits,           only: [:new, :create, :update]
   resources :articles do
     collection do
       delete :remove_select

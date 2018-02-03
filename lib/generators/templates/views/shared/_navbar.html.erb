@@ -1,9 +1,19 @@
 
 <nav class="navbar navbar-expand-sm navbar-light bg-light mb-3">
   <div class="container">
-  <%= link_to "SimpleAuth", root_path, class: "navbar-brand" %>
+  <%= link_to "SimpleAuth", root_path, class: "navbar-brand text-secondary" %>
         <ul class="navbar-nav">
           <% if logged_in? %>
+
+            <li class="nav-item dropdown">
+              <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+                <i class="fa fa-plus" aria-hidden="true"></i>
+              </a>
+              <div class="dropdown-menu dropdown-menu-right">
+                <%= link_to "发布文章", new_article_path, class: "dropdown-item text-secondary" %>
+              </div>
+            </li>
+ 
             <li class="nav-item dropdown">
               <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
                 <% if current_user.avatar.to_s.size == 0 %>
@@ -12,12 +22,13 @@
                   <%= image_tag current_user.avatar.tiny.url, class: "rounded-circle" %>
                 <% end %>
               </a>
-              <div class="dropdown-menu">
-                <%= link_to "退出", logout_path, method: "delete", class: "dropdown-item" %>
-                <%= link_to "查看", user_path(current_user), class: "dropdown-item" %>
-                <%= link_to "编辑用户", edit_user_path(current_user), class: "dropdown-item" %>
-                <%= link_to "发布文章", new_article_path, class: "dropdown-item" %>
-                <%= link_to "文章列表", articles_path, class: "dropdown-item" %>
+              <div class="dropdown-menu dropdown-menu-right">
+                <%= link_to "#{current_user.name}", user_path(current_user), class: "dropdown-item text-secondary" %>
+                <div class="dropdown-divider"></div>
+                <%= link_to "个人资料设置", edit_user_path(current_user), class: "dropdown-item text-secondary" %>
+                <%= link_to "文章列表", articles_path, class: "dropdown-item text-secondary" %>
+                <div class="dropdown-divider"></div>
+                <%= link_to "退出", logout_path, method: "delete", class: "dropdown-item text-secondary" %>
               </div>
             </li>
           <% else %>

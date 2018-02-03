@@ -23,6 +23,7 @@ class InitializerGenerator < Rails::Generators::Base
     directory "views/welcomes", "app/views/welcomes"
     directory "views/user_mailer", "app/views/user_mailer"
     directory "views/password_resets", "app/views/password_resets"
+    directory "views/password_alters", "app/views/password_alters"
     directory "views/articles", "app/views/articles"
     directory "views/layouts", "app/views/layouts"
 
@@ -53,7 +54,8 @@ class InitializerGenerator < Rails::Generators::Base
   root 'welcomes#index'
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
-  resources :portraits,            only: [:new, :create, :update]
+  resources :password_alters,     only: [:edit, :update]
+  resources :portraits,           only: [:new, :create, :update]
   resources :articles do
     collection do
       delete :remove_select
