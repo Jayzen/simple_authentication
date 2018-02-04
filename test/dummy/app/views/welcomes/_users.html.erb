@@ -1,7 +1,6 @@
   <table class="table table-striped">
   <thead>
-    <tr>
-      <th>#</th>
+    <tr class="text-secondary">
       <th>用户名</th>
       <th>邮箱</th>
       <th>查看/编辑/删除</th>
@@ -11,7 +10,6 @@
   <tbody>
     <% @users.each do |user| %>
       <tr>
-        <th scope="row"><%= user.id %></th>
         <td>
           <%= user.name %>
           <% if user.admin? && user.superadmin? %>
@@ -28,12 +26,12 @@
             </div>
             <div class="item-h1">
               <% unless !current_user?(user) %>
-                <%= link_to "编辑", edit_user_path(user), class: "btn btn-primary btn-sm" %>&nbsp
+                <%= link_to "编辑", edit_user_path(user), class: "btn btn-secondary btn-sm" %>&nbsp
               <% end %>
             </div>
             <div class="item-h1">
               <% if current_user.admin? && !current_user?(user) && !user.admin? %>
-                <%= link_to "删除", user, method: :delete, data: { confirm: "确定删除该用户?" }, class: "btn btn-danger btn-sm" %>&nbsp
+                <%= link_to "删除", user, method: :delete, data: { confirm: "确定删除该用户?" }, class: "btn btn-secondary btn-sm" %>&nbsp
             </div> 
             <div class="item-h1" id="<%= user.id %>-set-forbidden">
                 <% if user.forbidden? %>

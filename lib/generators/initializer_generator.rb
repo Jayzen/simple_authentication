@@ -26,6 +26,7 @@ class InitializerGenerator < Rails::Generators::Base
     directory "views/password_alters", "app/views/password_alters"
     directory "views/articles", "app/views/articles"
     directory "views/layouts", "app/views/layouts"
+    directory "views/categories", "app/views/categories"
 
     copy_file "mailers/user_mailer.rb", "app/mailers/user_mailer.rb"
     copy_file "uploaders/avatar_uploader.rb", "app/uploaders/avatar_uploader.rb"
@@ -63,6 +64,7 @@ class InitializerGenerator < Rails::Generators::Base
   end
   get 'articles_search', to: "welcomes#articles_search"
   get 'users_search', to: "welcomes#users_search"
+  resources :categories
 RUBY
     end
 
@@ -108,6 +110,7 @@ gem 'babosa'
 gem 'inky-rb', require: 'inky'
 gem 'premailer-rails'
 gem 'select_all-rails'
+gem 'ancestry'
 RUBY
     end
 
