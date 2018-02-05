@@ -5,11 +5,13 @@ class CreateArticles < ActiveRecord::Migration[5.1]
       t.text :content
       t.integer :user_id
       t.string :slug
+      t.integer :category_id
 
       t.timestamps
     end
 
     add_index :articles, :user_id
+    add_index :articles, :category_id
     add_index :articles, :slug, unique: true
   end
 end

@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 20180204111305) do
     t.text "content"
     t.integer "user_id"
     t.string "slug"
+    t.integer "category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["slug"], name: "index_articles_on_slug", unique: true

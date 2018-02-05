@@ -14,6 +14,7 @@ gem 'inky-rb', require: 'inky'
 gem 'premailer-rails'
 gem 'select_all-rails'
 gem 'ancestry'
+gem 'simplemde-rails'
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")

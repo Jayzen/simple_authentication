@@ -2,6 +2,7 @@ class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
   before_action :logged_in_user
   before_action :correct_user, only: [:edit, :update, :destroy]
+  before_action :fetch_categories, only: [:new, :edit]
 
   def show
     if request.path != article_path(@article) #当访问旧值时，链接地址会自动跳到更新后的新值中
@@ -20,11 +21,11 @@ class ArticlesController < ApplicationController
   def create
     @article = Article.new(article_params)
     @article.user_id = params[:user_id]
-    if params[:preview] || !@article.save
-      render :new
-    else
+    if @article.save
       redirect_to @article
       flash[:success] = "文章发布成功!"
+    else
+      render :new
     end
   end
 
@@ -69,11 +70,16 @@ class ArticlesController < ApplicationController
     end
 
     def article_params
-      params.require(:article).permit(:title, :content, {article_ids: []})
+      params.require(:article).permit(:title, :content, :category_id)
+      #params.require(:article).permit(:title, :content, {article_ids: []})
     end
 
     def correct_user
       @article = current_user.articles.friendly.find(params[:id])
       redirect_to root_url if @article.nil?
+    end
+
+    def fetch_categories
+      @root_categories = Category.roots.order(id: "desc")
     end
 end

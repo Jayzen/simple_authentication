@@ -75,6 +75,7 @@ RUBY
 //= require jcrop
 //= require avatar
 //= require select_all.js
+//= require simplemde.min
 RUBY
     end
 
@@ -111,6 +112,7 @@ gem 'inky-rb', require: 'inky'
 gem 'premailer-rails'
 gem 'select_all-rails'
 gem 'ancestry'
+gem 'simplemde-rails'
 RUBY
     end
 

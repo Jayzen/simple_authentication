@@ -208,6 +208,7 @@ GEM
     selenium-webdriver (3.8.0)
       childprocess (~> 0.5)
       rubyzip (~> 1.0)
+    simplemde-rails (1.11.2)
     spring (2.0.2)
       activesupport (>= 4.2)
     spring-watcher-listen (2.0.1)
@@ -270,6 +271,7 @@ DEPENDENCIES
   searchkick
   select_all-rails
   selenium-webdriver
+  simplemde-rails
   spring
   spring-watcher-listen (~> 2.0.0)
   sqlite3
