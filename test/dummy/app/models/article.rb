@@ -2,10 +2,12 @@ class Article < ApplicationRecord
   searchkick
   belongs_to :user
   belongs_to :category
+  has_many :comments
 
   validates :title, presence: true
   validates :content, presence: true
-  
+  validates :category_id, presence: true
+
   extend FriendlyId
   friendly_id :title, use: [:slugged, :history]
   

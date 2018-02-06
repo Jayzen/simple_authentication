@@ -1,21 +1,4 @@
-<div class='row'>
+<div class="row">
   <%= render 'left_bar' %>
-  <div class='col-md-10'>
-    <div class="card">
-      <div class="card-header text-secondary text-center">
-        <%= @article.title %>
-      </div>
-      <div class="card-body">
-        <div class="text-secondary text-center">
-          <p><small><%= link_to "#{@article.user.name}", user_path(@article.user), class: "text-secondary" %> 发表于<%= time_ago_in_words(@article.created_at) %>前</small></p>
-        </div>
-        <div class="text-secondary">
-          <p><%= @article.content %></p>
-        </div>
-      </div>
-    </div>
-  </div>
-
+  <%= render 'article' %>
 </div>
-
-

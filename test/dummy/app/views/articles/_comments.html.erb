@@ -1,0 +1,20 @@
+<% @comments.each do |comment| %>
+  <div class="media">
+    <% if comment.user.avatar.to_s.size == 0 %>
+      <%= image_tag "avatar.jpeg", size: "40x40", class: "d-flex mr-3 rounded-circle" %>
+    <% else %>
+      <%= image_tag comment.user.avatar.middle.url, class: "d-flex mr-3 rounded-circle" %>
+    <% end %>
+    <div class="media-body">
+      <div class="mt-0">
+        <strong><%= comment.user.name %></strong> ·
+        <small>评论于<%= time_ago_in_words(comment.created_at) %>前</small>
+        <% if comment.user == current_user %>
+          <a href="<%= edit_comment_path(comment) %>", class="text-secondary"><i class="fa fa-edit fa-fw"></i></a>
+        <% end %>
+      </div>
+      <%= comment.content %>
+    </div>
+  </div>
+  <hr>
+<% end %>

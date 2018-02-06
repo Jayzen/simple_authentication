@@ -23,4 +23,5 @@ Rails.application.routes.draw do
   get 'articles_search', to: "welcomes#articles_search"
   get 'users_search', to: "welcomes#users_search"
   resources :categories
+  resources :comments
 end

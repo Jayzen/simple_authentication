@@ -5,6 +5,8 @@ class ArticlesController < ApplicationController
   before_action :fetch_categories, only: [:new, :edit]
 
   def show
+    @comment = Comment.new
+    @comments = @article.comments.includes(:user).order("created_at desc")
     if request.path != article_path(@article) #当访问旧值时，链接地址会自动跳到更新后的新值中
       redirect_to @article, :status => :moved_permanently
     end
