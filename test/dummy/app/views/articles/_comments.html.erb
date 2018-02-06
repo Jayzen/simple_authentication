@@ -10,7 +10,8 @@
         <strong><%= comment.user.name %></strong> ·
         <small>评论于<%= time_ago_in_words(comment.created_at) %>前</small>
         <% if comment.user == current_user %>
-          <a href="<%= edit_comment_path(comment) %>", class="text-secondary"><i class="fa fa-edit fa-fw"></i></a>
+          <a href="<%= edit_comment_path(comment, article: comment.article) %>", class="text-secondary"><i class="fa fa-edit fa-fw"></i></a>
+          <a href="<%= comment_path(comment, article: comment.article) %>", data-method="delete", data-confirm="确定删除评论?", class="text-secondary"><i class="fa fa-trash-o fa-fw"></i></a>
         <% end %>
       </div>
       <%= comment.content %>

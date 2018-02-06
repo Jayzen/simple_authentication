@@ -5,7 +5,7 @@ class Category < ApplicationRecord
   validates :name, presence: { message: "标签名称不能为空" }
   validates :name, uniqueness: { message: "标签名称需唯一" }
 
-  has_many :articles
+  has_many :articles, dependent: :destroy
   
   def self.grouped_data
     self.roots.order("weight desc").inject([]) do |result, parent|
