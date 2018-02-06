@@ -49,8 +49,11 @@
         <div class="form-group row">
           <label class="col-sm-2 col-form-label"></label>
           <div class="col-sm-10">
-            <%= f.submit (@category.new_record? ? "新建标签" : "编辑标签"), class: "btn btn-outline-secondary" %>
+            <%= f.submit (@category.new_record? ? "创建标签" : "更新标签"), class: "btn btn-outline-secondary" %>
             <%= link_to "标签列表", categories_path, class: "btn btn-outline-secondary" %>
+            <% unless @category.new_record? %>
+              <%= link_to "新建标签", new_category_path, class: "btn btn-outline-secondary" %>
+            <% end %>
           </div>
         </div>
       <% end -%>
