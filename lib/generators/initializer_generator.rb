@@ -14,7 +14,8 @@ class InitializerGenerator < Rails::Generators::Base
     copy_file "assets/application.scss", "app/assets/stylesheets/application.scss"
     copy_file "assets/avatar.coffee", "app/assets/javascripts/avatar.coffee"
     copy_file "assets/foundation_emails.scss", "vendor/assets/stylesheets/foundation_emails.scss"
-    copy_file "assets/avatar.jpeg", "app/assets/images/avatar.jpeg"
+    copy_file "assets/male.jpeg", "app/assets/images/male.jpeg"
+    copy_file "assets/female.jpg", "app/assets/images/female.jpg"
 
     copy_file "views/sessions/new.html.erb", "app/views/sessions/new.html.erb"
     directory "views/shared", "app/views/shared"

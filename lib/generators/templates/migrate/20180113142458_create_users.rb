@@ -11,7 +11,7 @@ class CreateUsers < ActiveRecord::Migration[5.1]
       t.string :avatar
       t.string :activation_digest
       t.boolean :activated, default: false
-      t.boolean :gender
+      t.string :gender
       t.datetime :activated_at
       t.string :reset_digest
       t.datetime :reset_sent_at

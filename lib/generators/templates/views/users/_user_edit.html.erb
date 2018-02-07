@@ -17,13 +17,13 @@
           <label class="col-sm-2 col-form-label text-secondary">性别</label>
           <div class="col-sm-10">
             <div class="form-check">
-              <input class="form-check-input" type="radio" value="option1" name="exampleRadios" id="exampleRadios1" checked>
+              <%= f.radio_button :gender, "male", class: "form-check-input", checked: "checked" %>
               <label class="form-check-label text-secondary">
                 美男子
               </label>
             </div>
             <div class="form-check">
-              <input class="form-check-input" type="radio" value="option2" name="exampleRadios" id="exampleRadios2" >
+              <%= f.radio_button :gender, "female", class: "form-check-input" %>
               <label class="form-check-label text-secondary">
                 美少女
               </label>

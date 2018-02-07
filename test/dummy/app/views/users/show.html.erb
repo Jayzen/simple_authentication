@@ -34,7 +34,11 @@
     <p class="card-title text-secondary">邮箱: <%= @user.email %></p>
     <%= link_to "文章列表", articles_path, class: "text-secondary" %>
     <% if @user.avatar.to_s.size == 0 %>
-      <p><%= image_tag "avatar.jpeg", size: "25x25", class: "rounded-circle" %></p>
+      <% if @user.gender == "male" %>
+        <p><%= image_tag "male.jpeg", size: "25x25", class: "rounded-circle" %></p>
+      <% else %>
+        <p><%= image_tag "female.jpg", size: "25x25", class: "rounded-circle" %></p>  
+      <% end %>
     <% else %>
       <p><%= image_tag @user.avatar.thumb.url %></p>
     <% end %>
