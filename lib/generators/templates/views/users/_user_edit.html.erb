@@ -14,11 +14,37 @@
         </div>
 
         <div class="form-group row">
+          <label class="col-sm-2 col-form-label text-secondary">性别</label>
+          <div class="col-sm-10">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" value="option1" name="exampleRadios" id="exampleRadios1" checked>
+              <label class="form-check-label text-secondary">
+                美男子
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" value="option2" name="exampleRadios" id="exampleRadios2" >
+              <label class="form-check-label text-secondary">
+                美少女
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group row mb-0">
           <label class="col-sm-2 col-form-label text-secondary">邮箱</label>
           <div class="col-sm-10">
             <%= f.email_field :email, class: "form-control", disabled: "false" %>
           </div>
         </div>
+        
+        <div class="form-group row mt-0">
+          <label class="col-sm-2 col-form-label text-secondary"> </label>
+          <div class="col-sm-10">
+            <label class="text-secondary"><small><strong>用户注册后邮箱名称不能修改!</strong></small></label>
+          </div>
+        </div>
+
         <div class="form-group row">
           <label class="col-sm-2 col-form-label"></label>
           <div class="col-sm-10">
