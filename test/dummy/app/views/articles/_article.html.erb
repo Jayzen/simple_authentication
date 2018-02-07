@@ -10,6 +10,7 @@
            <i class="fa fa-tag fa-fw"></i><%= @article.category.name %>
             · <a href="<%= user_path(@article.user) %>", class="text-secondary"><i class="fa fa-user fa-fw"></i><%= @article.user.name %></a>
             · 发表于<%= time_ago_in_words(@article.created_at) %>前
+            · <%= @article.view_count %>次阅读
           </small>
         </p>
       </div>

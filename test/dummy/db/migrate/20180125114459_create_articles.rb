@@ -6,6 +6,7 @@ class CreateArticles < ActiveRecord::Migration[5.1]
       t.integer :user_id
       t.string :slug
       t.integer :category_id
+      t.integer :view_count, default: 0
 
       t.timestamps
     end

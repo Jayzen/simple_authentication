@@ -18,8 +18,10 @@ ActiveRecord::Schema.define(version: 20180206030814) do
     t.integer "user_id"
     t.string "slug"
     t.integer "category_id"
+    t.integer "view_count", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_articles_on_category_id"
     t.index ["slug"], name: "index_articles_on_slug", unique: true
     t.index ["user_id"], name: "index_articles_on_user_id"
   end
