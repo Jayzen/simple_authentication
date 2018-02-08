@@ -1,7 +1,11 @@
 <% @comments.each do |comment| %>
   <div class="media">
     <% if comment.user.avatar.to_s.size == 0 %>
-      <%= image_tag "avatar.jpeg", size: "40x40", class: "d-flex mr-3 rounded-circle" %>
+      <% if current_user.gender == "male" %>
+        <%= image_tag "male.jpeg", size: "25x25", class: "rounded-circle" %>
+      <% else %>
+        <%= image_tag "female.jpg", size: "25x25", class: "rounded-circle" %>
+      <% end %>
     <% else %>
       <%= image_tag comment.user.avatar.middle.url, class: "d-flex mr-3 rounded-circle" %>
     <% end %>

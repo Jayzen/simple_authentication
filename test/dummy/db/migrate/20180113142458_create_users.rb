@@ -16,6 +16,7 @@ class CreateUsers < ActiveRecord::Migration[5.1]
       t.string :reset_digest
       t.datetime :reset_sent_at
       t.string :slug
+      t.integer :notifications_count, default: 0
       t.timestamps
     end
     add_index :users, :email, unique: true

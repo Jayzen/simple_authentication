@@ -85,6 +85,7 @@ ActiveRecord::Schema.define(version: 20180208133616) do
     t.string "reset_digest"
     t.datetime "reset_sent_at"
     t.string "slug"
+    t.integer "notifications_count", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
