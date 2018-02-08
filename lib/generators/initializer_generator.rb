@@ -29,6 +29,7 @@ class InitializerGenerator < Rails::Generators::Base
     directory "views/layouts", "app/views/layouts"
     directory "views/categories", "app/views/categories"
     directory "views/comments", "app/views/comments" 
+    directory "views/notifications", "app/views/notifications"
 
     copy_file "mailers/user_mailer.rb", "app/mailers/user_mailer.rb"
     copy_file "uploaders/avatar_uploader.rb", "app/uploaders/avatar_uploader.rb"

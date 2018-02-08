@@ -5,9 +5,11 @@
         <ul class="navbar-nav">
           <% if logged_in? %>
             <li class="nav-item">
-              <a class="nav-link" href="#">
+              <a class="nav-link" href="<%= notifications_path %>">
                 <i class="fa fa-bell fa-fw"></i>
-                <span class="badge badge-secondary ml-0"><%= current_user.notifications_count %></span>
+                <% unless current_user.notifications_count == 0 %>
+                  <span class="badge badge-secondary ml-0"><%= current_user.notifications_count %></span>
+                <% end %>
               </a>
             </li>
             <li class="nav-item dropdown">
