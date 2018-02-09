@@ -18,6 +18,9 @@
         <p><%= @article.content %></p>
       </div>
     </div>
+    <div class="card-footer text-muted">
+     <a href="<%= edit_article_path(@article) %>", class="text-secondary"><i class="fa fa-edit fa-fw"></i> <small>编辑</small></a>
+    </div>
   </div>
   <%= render 'new_comment' %>
   <%= render 'comments' %>
