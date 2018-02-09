@@ -18,7 +18,16 @@
     <div class="form-group">
       <%= content_for :javascripts do %>
         <script>
-          var simplemde = new SimpleMDE({
+          let simplemde = null; 
+
+          $(document).on("turbolinks:before-visit", function() {
+            if (simplemde != null) { 
+            simplemde.toTextArea();
+            return simplemde = null;
+            }
+          });
+
+          $(document).on("turbolinks:load", () => simplemde = new SimpleMDE({
             toolbar: [{name: "bold", action: SimpleMDE.toggleBold, className: "fa fa-bold",title: "Bold",},
             {name: "italic", action: SimpleMDE.toggleItalic, className: "fa fa-italic", title: "Italic",},
             {name: "heading", action: SimpleMDE.toggleHeadingSmaller, className: "fa fa-header", title: "Heading",},
@@ -34,7 +43,7 @@
             {name: "preview", action: SimpleMDE.togglePreview, className: "fa fa-eye no-disable",title: "Toggle Preview",},
             {name: "side-by-side", action: SimpleMDE.toggleSideBySide, className: "fa fa-columns no-disable no-mobile", title: "Toggle Side by Side",},
             {name: "fullscreen", action: SimpleMDE.toggleFullScreen, className: "fa fa-arrows-alt no-disable no-mobile",title: "Toggle Fullscreen",}]
-          });
+          }));
         </script>
       <% end %> 
       <%= f.text_area :content, class:"form-control mb-0", rows: 15, placeholder: "输入文章正文..." %>
