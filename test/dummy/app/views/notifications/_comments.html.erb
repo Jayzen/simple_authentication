@@ -14,11 +14,17 @@
           <%= image_tag comment.user.avatar.middle.url, class: "d-flex mr-3 rounded-circle" %>
         <% end %>
         <div class="media-body text-secondary">
-          <div class="mt-0">
-            <strong><%= link_to "#{comment.user.name}", user_path(comment.user), class: "text-secondary" %></strong>
-            <small>评论于<%= time_ago_in_words(comment.created_at) %>前</small>
+          <div class="mt-0 d-flex flex-row justify-content-between row-hl">
+            <div class="item-hl">
+              <strong><%= link_to "#{comment.user.name}", user_path(comment.user), class: "text-secondary" %></strong>
+            </div>
+            <div class="item-hl">
+              <small>评论于<%= time_ago_in_words(comment.created_at) %>前</small>
+            <div>
           </div>
-          <p class="text-secondary"><%= comment.content %></p>
+          <div class="d-flex flex-row justify-content-start row-hl">
+            <p class="item-hl text-secondary"><%= comment.content %></p>
+          </div>  
         </div>
       </div>
     <% end %>
