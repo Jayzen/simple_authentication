@@ -4,7 +4,13 @@ class NotificationsController < ApplicationController
 
   def index
   end
-
+  
+  def read
+    @notifications.each do |notification|
+      notification.update_attribute(:read_at, Time.zone.now)
+    end
+    redirect_to notifications_path
+  end
   private
     def set_notifications
       @notifications = Notification.where(recipient: current_user).unread

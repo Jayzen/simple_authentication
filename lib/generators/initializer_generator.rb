@@ -69,7 +69,9 @@ class InitializerGenerator < Rails::Generators::Base
   get 'users_search', to: "welcomes#users_search"
   resources :categories
   resources :comments
-  resources :notifications, only: [:index]
+  resources :notifications do
+    get 'read', on: :collection
+  end
 RUBY
     end
 
