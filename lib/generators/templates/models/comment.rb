@@ -1,9 +1,10 @@
 class Comment < ApplicationRecord
   belongs_to :article
   belongs_to :user
+  has_many :notifications, as: :notifiable
+  
   validates :content, presence: true
   after_create :create_notifications
-
 
   private
     def create_notifications

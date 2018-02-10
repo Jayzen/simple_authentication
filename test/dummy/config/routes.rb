@@ -26,5 +26,6 @@ Rails.application.routes.draw do
   resources :comments
   resources :notifications do
     get 'read', on: :collection
+    get 'remove', on: :collection
   end
 end

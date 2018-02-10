@@ -71,6 +71,7 @@ class InitializerGenerator < Rails::Generators::Base
   resources :comments
   resources :notifications do
     get 'read', on: :collection
+    get 'remove', on: :collection
   end
 RUBY
     end

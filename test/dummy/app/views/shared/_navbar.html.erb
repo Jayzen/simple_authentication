@@ -6,7 +6,7 @@
             <li class="nav-item d-flex flex-row align-items-center">
               <a class="nav-link item-h1 mr-0 pr-0" href="<%= notifications_path %>"><i class="fa fa-bell fa-fw"></i></a>
               <% unless current_user.notifications.unread.size == 0 %>  
-                <a class="nav-link item-hl ml-0" href="<%= read_notifications_path %>"><span class="badge badge-secondary"><%= current_user.notifications.unread.size %></span></a>
+                <a class="notifications_count nav-link item-hl ml-0" href="<%= read_notifications_path %>"><span class="badge badge-secondary"><%= current_user.notifications.unread.size %></span></a>
               <% end %>
             </li>
             </li>
