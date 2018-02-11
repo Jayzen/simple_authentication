@@ -28,7 +28,7 @@
                     <%= image_tag "female.jpg", size: "25x25", class: "rounded-circle" %>
                   <% end %>
                 <% else %>
-                  <%= image_tag current_user.avatar.tiny.url, class: "rounded-circle" %>
+                  <%= image_tag current_user.avatar.large.url, size: "25x25", class: "rounded-circle" %>
                 <% end %>
               </a>
               <div class="dropdown-menu dropdown-menu-right">
