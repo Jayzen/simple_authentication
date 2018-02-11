@@ -13,6 +13,7 @@
               <th>发布时间</th>
               <th>编辑</th>
               <th>删除</th>
+              <th>发布/取消发布</th>
             </tr>
           </thead>
           <tbody>
@@ -21,9 +22,12 @@
                 <td><%= check_box_tag "[article_ids][]", article.id, false, class: "selectable" %></td>
                 <td><%=link_to "#{article.title}", article_path(article), class: "text-secondary" %></td>
                 <td><small><%= article.updated_at.to_s(:db) %></small></td>
-                <% if current_user == article.user %>
-                  <td><%= link_to "编辑", edit_article_path(article), class: "btn btn-sm btn-outline-secondary" %></td>
-                  <td><%= link_to "删除", article, method: :delete, data: { confirm: "确定删除?" }, class: "btn btn-sm btn-outline-secondary" %></td>
+                <td><%= link_to "编辑", edit_article_path(article), class: "btn btn-sm btn-outline-secondary" %></td>
+                <td><%= link_to "删除", article, method: :delete, data: { confirm: "确定删除?" }, class: "btn btn-sm btn-outline-secondary" %></td>
+                <% if article.status == "发布" %>
+                  <td><%= link_to "取消发布", unrelease_article_path(article), class: "btn btn-sm btn-outline-secondary" %></td>
+                <% else %>
+                  <td><%= link_to "发布", release_article_path(article), class: "btn btn-sm btn-outline-secondary" %></td>
                 <% end %>
               </tr>
             <% end %>

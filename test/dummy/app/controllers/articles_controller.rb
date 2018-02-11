@@ -2,7 +2,7 @@ class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
   before_action :logged_in_user
   before_action :correct_user, only: [:edit, :update, :destroy]
-  before_action :fetch_categories, only: [:new, :edit]
+  before_action :fetch_categories, only: [:new, :create, :edit, :update]
 
   def show
     @comment = Comment.new
@@ -66,6 +66,18 @@ class ArticlesController < ApplicationController
       flash[:danger] = "文章未被选择!"
     end
   end
+  
+  def release
+    @article = Article.friendly.find(params[:id])
+    @article.update_attribute(:status, "发布")
+    redirect_to articles_path
+  end
+
+  def unrelease
+    @article = Article.friendly.find(params[:id])
+    @article.update_attribute(:status, "不发布")
+    redirect_to articles_path
+  end
 
   private
     def set_article
@@ -73,7 +85,7 @@ class ArticlesController < ApplicationController
     end
 
     def article_params
-      params.require(:article).permit(:title, :content, :category_id)
+      params.require(:article).permit(:title, :content, :status, :category_id)
       #params.require(:article).permit(:title, :content, {article_ids: []})
     end
 

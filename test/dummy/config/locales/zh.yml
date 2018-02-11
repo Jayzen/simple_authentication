@@ -77,8 +77,8 @@ zh:
               blank: "标题不能为空"
             content:
               blank: "内容不能为空"
-            category_id:
-              blank: "标签不能为空"
+            category:
+              required: "标签不能为空"
         comment:
           attributes:
             content:

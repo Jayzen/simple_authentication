@@ -64,6 +64,10 @@ class InitializerGenerator < Rails::Generators::Base
     collection do
       delete :remove_select
     end
+    member do
+      get :release
+      get :unrelease
+    end
   end
   get 'articles_search', to: "welcomes#articles_search"
   get 'users_search', to: "welcomes#users_search"

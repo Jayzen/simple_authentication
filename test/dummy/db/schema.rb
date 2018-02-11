@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20180208133616) do
     t.string "slug"
     t.integer "category_id"
     t.integer "view_count", default: 0
+    t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_articles_on_category_id"
