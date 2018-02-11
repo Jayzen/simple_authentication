@@ -11,7 +11,7 @@
             <a href="#", class="btn btn-outline-secondary", id="button_trigger" >
               <i class="fa fa-upload fa-fw"></i>头像上传
             </a>
-            <%= f.file_field :avatar, class: "form-control text-secondary" %>
+            <%= f.file_field :avatar, class: "form-control text-secondary", hidden: true %>
             <input type="hidden" name="user_id" value="<%= current_user.id %>" />
           </div>
         </div>
@@ -37,6 +37,10 @@
         }
         e.preventDefault(); // prevent navigation to "#"
       }, false);
+      
+      $("#portrait_avatar").change(function(){
+        $("#button_trigger").text($("#portrait_avatar").val());
+      })
     });
   </script>
 <% end %>
