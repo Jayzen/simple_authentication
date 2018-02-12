@@ -20,8 +20,7 @@ Rails.application.routes.draw do
       delete :remove_select
     end
     member do
-      get :release
-      get :unrelease
+      get :release, :unrelease
     end
   end
   get 'articles_search', to: "welcomes#articles_search"

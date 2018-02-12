@@ -65,8 +65,7 @@ class InitializerGenerator < Rails::Generators::Base
       delete :remove_select
     end
     member do
-      get :release
-      get :unrelease
+      get :release, :unrelease
     end
   end
   get 'articles_search', to: "welcomes#articles_search"

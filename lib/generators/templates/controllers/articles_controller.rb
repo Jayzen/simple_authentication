@@ -66,11 +66,11 @@ class ArticlesController < ApplicationController
       flash[:danger] = "文章未被选择!"
     end
   end
-  
+
   def release
     @article = Article.friendly.find(params[:id])
-    @article.update_attribute(:status, "发布")
-    
+    @article.toggle!(:status)
+
     respond_to do |format|
       format.html { redirect_to articles_path }
       format.js
@@ -79,7 +79,7 @@ class ArticlesController < ApplicationController
 
   def unrelease
     @article = Article.friendly.find(params[:id])
-    @article.update_attribute(:status, "不发布")
+    @article.toggle!(:status)
     respond_to do |format|
       format.html { redirect_to articles_path }
       format.js
