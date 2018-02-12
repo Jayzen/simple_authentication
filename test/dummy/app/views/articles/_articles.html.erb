@@ -24,11 +24,13 @@
                 <td><small><%= article.updated_at.to_s(:db) %></small></td>
                 <td><%= link_to "编辑", edit_article_path(article), class: "btn btn-sm btn-outline-secondary" %></td>
                 <td><%= link_to "删除", article, method: :delete, data: { confirm: "确定删除?" }, class: "btn btn-sm btn-outline-secondary" %></td>
-                <% if article.status == "发布" %>
-                  <td><%= link_to "取消发布", unrelease_article_path(article), class: "btn btn-sm btn-outline-secondary" %></td>
-                <% else %>
-                  <td><%= link_to "发布", release_article_path(article), class: "btn btn-sm btn-outline-secondary" %></td>
-                <% end %>
+                <td id="release">
+                  <% if article.status == "发布" %>
+                    <%= render 'unrelease', "@article": article %>
+                  <% else %>
+                    <%= render 'release', "@article": article %>
+                  <% end %>
+                </td>
               </tr>
             <% end %>
             <% unless @articles.size == 0 %>

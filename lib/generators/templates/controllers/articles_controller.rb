@@ -70,13 +70,20 @@ class ArticlesController < ApplicationController
   def release
     @article = Article.friendly.find(params[:id])
     @article.update_attribute(:status, "发布")
-    redirect_to articles_path
+    
+    respond_to do |format|
+      format.html { redirect_to articles_path }
+      format.js
+    end
   end
 
   def unrelease
     @article = Article.friendly.find(params[:id])
     @article.update_attribute(:status, "不发布")
-    redirect_to articles_path
+    respond_to do |format|
+      format.html { redirect_to articles_path }
+      format.js
+    end
   end
 
   private
