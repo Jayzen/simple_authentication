@@ -24,7 +24,7 @@
                 <td><small><%= article.updated_at.to_s(:db) %></small></td>
                 <td><%= link_to "编辑", edit_article_path(article), class: "btn btn-sm btn-outline-secondary" %></td>
                 <td><%= link_to "删除", article, method: :delete, data: { confirm: "确定删除?" }, class: "btn btn-sm btn-outline-secondary" %></td>
-                <td id="release">
+                <td id="<%= article.id %>-release">
                   <% if article.status? %>
                     <%= render 'unrelease', "@article": article %>
                   <% else %>
