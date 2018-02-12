@@ -42,7 +42,7 @@
               <td></td>
               <td></td>
               <td></td>
-              <td></td>
+              <td><%= link_to "全部取消发布", remove_release_articles_path, method: :delete, data: { confirm: "确定取消发布?" }, class: "btn btn-sm btn-outline-secondary"%></td>
             <% end %>
           </tbody>
         </table>

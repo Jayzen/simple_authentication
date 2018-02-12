@@ -52,7 +52,15 @@ class ArticlesController < ApplicationController
     redirect_to articles_url 
     flash[:success] = '文章删除成功!'
   end
-  
+
+  def remove_release
+    @articles = current_user.articles
+    @articles.each do |article|
+      article.update_attribute(:status, false)
+    end
+    redirect_to articles_path
+  end
+
   def remove_select
     unless params[:article_ids].nil?
       @articles = Article.find(params[:article_ids])

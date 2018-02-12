@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   resources :articles do
     collection do
       delete :remove_select
+      delete :remove_release
     end
     member do
       get :release, :unrelease
