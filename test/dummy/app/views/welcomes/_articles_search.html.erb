@@ -1,8 +1,0 @@
-<%= form_tag(articles_search_path, method: :get) do %>
-  <div class="input-group mb-4">
-    <%= text_field_tag :term, params[:term], placeholder: "输入需要查找的文章内容或者标题", class: "form-control col-md-4" %>
-      <div class="input-group-append">
-        <%= submit_tag "搜索", class: "btn btn-outline-secondary" %>
-      </div>
-  </div>
-<% end %>

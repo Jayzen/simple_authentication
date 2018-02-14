@@ -2,7 +2,6 @@
   <%= render 'welcomes/users_search' %>
   <%= render 'welcomes/users' %>
 <% elsif logged_in? && !current_user.admin? && !current_user.superadmin? %>
-  <%= render 'welcomes/articles_search' %>
   <%= render 'welcomes/articles'%>
 <% else %>
   <%= render 'welcomes/page'%>

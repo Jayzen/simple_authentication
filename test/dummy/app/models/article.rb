@@ -7,6 +7,11 @@ class Article < ApplicationRecord
   validates :title, presence: true
   validates :content, presence: true
 
+  module Status
+    On = true
+    Off = false
+  end
+
   extend FriendlyId
   friendly_id :title, use: [:slugged, :history]
   

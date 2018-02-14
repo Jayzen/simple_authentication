@@ -11,7 +11,7 @@
             <%= f.hidden_field "crop_#{attribute}", id: "portrait_crop_#{attribute}" %>
           <% end %>
           <input type="hidden" name="user_id" value="<%= current_user.id %>" />
-          <%= f.submit "提交裁剪", class: "btn btn-outline-secondary" %>
+          <%= f.submit "提交裁剪", class: "btn btn-primary" %>
         <% end %>
       </div>
     </div>
