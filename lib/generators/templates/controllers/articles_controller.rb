@@ -44,7 +44,7 @@ class ArticlesController < ApplicationController
   end
   
   def index
-    @articles = current_user.articles.order("created_at desc").page(params[:page])
+    @articles = current_user.articles.order("created_at desc").page(params[:page]).per(10)
   end
 
   def destroy

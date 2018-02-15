@@ -1,4 +1,27 @@
-<div class="row">
-  <%= render 'left_bar' %>
-  <%= render 'article' %>
+<div>
+  <div class="card mb-3">
+    <div class="card-header text-secondary text-center">
+      <%= @article.title %>
+    </div>
+    <div class="card-body">
+      <div class="text-secondary text-center">
+        <p>
+        <small>
+           <i class="fa fa-tag fa-fw"></i><%= @article.category.name %>
+            · <a href="<%= user_path(@article.user) %>", class="text-secondary"><i class="fa fa-user fa-fw"></i><%= @article.user.name %></a>
+            · 发表于<%= time_ago_in_words(@article.created_at) %>前
+            · <%= @article.view_count %>次阅读
+          </small>
+        </p>
+      </div>
+      <div class="text-secondary">
+        <p><%= @article.content %></p>
+      </div>
+    </div>
+    <div class="card-footer text-muted">
+     <a href="<%= edit_article_path(@article) %>", class="text-secondary"><i class="fa fa-edit fa-fw"></i> <small>编辑</small></a>
+    </div>
+  </div>
+  <%= render 'new_comment' %>
+  <%= render 'comments' %>
 </div>

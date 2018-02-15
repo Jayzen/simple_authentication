@@ -25,7 +25,6 @@ Rails.application.routes.draw do
     end
   end
   get 'articles_search', to: "welcomes#articles_search"
-  get 'users_search', to: "welcomes#users_search"
   resources :categories
   resources :comments
   resources :notifications do

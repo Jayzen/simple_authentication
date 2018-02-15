@@ -7,8 +7,9 @@ class CreateArticles < ActiveRecord::Migration[5.1]
       t.string :slug
       t.integer :category_id
       t.integer :view_count, default: 0
+      t.integer :comments_count, default: 0
       t.boolean :status, default: false
-
+  
       t.timestamps
     end
 

@@ -1,0 +1,56 @@
+<div class="col-md-10">
+  <div class="card">
+    <div class="card-header text-secondary text-center">
+      用户列表
+    </div>
+    <div class="card-body">
+      <table class="table table-sm table-hover table-striped">
+        <%= render 'search' %>
+        <thead>
+          <tr class="text-secondary">
+            <th>用户名</th>
+            <th>邮箱</th>
+            <th>查看/编辑/删除</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @users.each do |user| %>
+            <tr class="text-secondary">
+              <td>
+                <%= user.name %>
+                <% if user.admin? && user.superadmin? %>
+                  <button type="button" class="btn btn-info btn-sm">超级管理员</button>
+                <% elsif user.admin? && !user.superadmin? %>
+                  <button type="button" class="btn btn-info btn-sm">管理员</button>
+                <% end %>
+              </td>
+              <td><%= user.email %></td>
+              <td>
+                <div class="d-flex flex-row">
+                  <div class="item-h1">
+                    <%= link_to "查看", user_path(user), class: "btn btn-secondary btn-sm" %>&nbsp
+                  </div>
+                  <div class="item-h1">
+                    <% if current_user.admin? && !current_user?(user) && !user.admin? %>
+                      <%= link_to "删除", user, method: :delete, data: { confirm: "确定删除该用户?" }, class: "btn btn-secondary btn-sm" %>&nbsp
+                  </div> 
+                  <div class="item-h1" id="<%= user.id %>-set-forbidden">
+                      <% if user.forbidden? %>
+                        <%= render 'unforbidden', "@user": user %>
+                      <% else %>
+                        <%= render 'forbidden', "@user": user %>
+                      <% end %>
+                    <% end %>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+  <%= paginate @users %>
+

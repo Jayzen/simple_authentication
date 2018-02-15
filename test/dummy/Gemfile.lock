@@ -88,6 +88,8 @@ GEM
       multi_json
     erubi (1.7.0)
     execjs (2.7.0)
+    faker (1.8.7)
+      i18n (>= 0.7)
     faraday (0.14.0)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.18)
@@ -255,6 +257,7 @@ DEPENDENCIES
   capybara (~> 2.13)
   carrierwave
   coffee-rails (~> 4.2)
+  faker
   font-awesome-rails
   friendly_id
   inky-rb

@@ -2,11 +2,11 @@ class UsersController < ApplicationController
   before_action :find_user, only: [:show, :update, :edit, 
                                    :authorize, :unauthorize,
                                    :avatar_new, :avatar_create, :avatar_update]
-  before_action :logged_in_user, only: [:edit, :update, :destroy, :show,
+  before_action :logged_in_user, only: [:edit, :update, :destroy, :show, :search,
                                         :avatar_create, :avatar_update, :avatar_new]
   before_action :correct_user, only: [:edit, :update,
                                    :avatar_create, :avatar_update, :avatar_new]
-  before_action :admin_user, only: :destroy
+  before_action :admin_user, only: [:destroy, :search]
   before_action :superadmin_user, only: [:authorize, :unauthorize]
 
   def show
@@ -44,6 +44,7 @@ class UsersController < ApplicationController
   end
 
   def index
+    @users = User.order("created_at desc").page(params[:page])
   end
 
   def destroy
@@ -88,6 +89,16 @@ class UsersController < ApplicationController
       format.html { redirect_to @user }
       format.js
     end 
+  end
+
+  def search
+    case params[:category]
+      when 'email'
+        @users = User.where("email like '%#{params[:search]}%'").order("created_at desc").page(params[:page])
+      when 'name'
+        @users = User.where("name like '%#{params[:search]}%'").order("created_at desc").page(params[:page])
+    end
+    render 'index'
   end
 
   private
