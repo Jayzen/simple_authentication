@@ -30,7 +30,8 @@ class InitializerGenerator < Rails::Generators::Base
     directory "views/categories", "app/views/categories"
     directory "views/comments", "app/views/comments" 
     directory "views/notifications", "app/views/notifications"
-
+    directory "views/tags", "app/views/tags"
+    
     copy_file "mailers/user_mailer.rb", "app/mailers/user_mailer.rb"
     copy_file "uploaders/avatar_uploader.rb", "app/uploaders/avatar_uploader.rb"
     directory "views/kaminari", "app/views/kaminari"
@@ -76,6 +77,7 @@ class InitializerGenerator < Rails::Generators::Base
     get 'read', on: :collection
     get 'remove', on: :collection
   end
+  resources :tags
 RUBY
     end
 

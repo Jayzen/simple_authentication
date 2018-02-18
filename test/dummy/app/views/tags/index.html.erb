@@ -1,0 +1,6 @@
+<% @root_tags.each do |root_tag| %>
+  <%= root_tag.name %>
+  <% root_tag.children.each do |tag| %>
+    <%= link_to "#{tag.name}", tag_path(tag) %>
+  <% end %>
+<% end %>

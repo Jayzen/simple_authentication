@@ -31,4 +31,5 @@ Rails.application.routes.draw do
     get 'read', on: :collection
     get 'remove', on: :collection
   end
+  resources :tags
 end

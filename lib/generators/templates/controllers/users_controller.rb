@@ -6,8 +6,8 @@ class UsersController < ApplicationController
                                         :avatar_create, :avatar_update, :avatar_new]
   before_action :correct_user, only: [:edit, :update,
                                    :avatar_create, :avatar_update, :avatar_new]
-  before_action :admin_user, only: [:destroy, :search]
-  before_action :superadmin_user, only: [:authorize, :unauthorize]
+  before_action :admin_user, only: [:destroy, :search, :index, :destroy]
+  before_action :superadmin_user, only: [:authorize, :unauthorize, :destroy]
 
   def show
     if request.path != user_path(@user)

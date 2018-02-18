@@ -2,6 +2,7 @@ class CategoriesController < ApplicationController
   before_action :find_root_categories, only: [:new, :create, :edit, :update]
   before_action :find_category, only: [:edit, :update, :destroy]
   before_action :logged_in_user
+  before_action :admin_user
 
   def index
     if params[:id].blank?
