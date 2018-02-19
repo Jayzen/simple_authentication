@@ -1,31 +1,21 @@
 <div class="card border-secondary mb-3">
   <div class="card-header">
     <div class="d-flex flex-row">
-      <div class="item-hl">
+      <div>
         <p class="text-secondary"><%= @user.name %></p>
       </div>&nbsp
-      <div class="item-h1">
+      <div>
         <% if current_user?(@user) %>
-          <button type="button" class="btn btn-danger btn-sm">当前用户</button>
+          <span class='badge badge-danger'>当前用户</span>
         <% end %>
       </div>&nbsp
-      <div class="item-h1", id="set_name">
+      <div>
         <% if @user.admin? && @user.superadmin? %>
-          <button type="button" class="btn btn-info btn-sm">超级管理员</button>
+          <span class='badge badge-primary'>超级管理员</span>
         <% elsif @user.admin? && !@user.superadmin? %>
-          <button type="button" class="btn btn-info btn-sm">管理员</button>
+          <span class='badge badge-primary'>管理员</span>
         <% else %>
-          <button type="button" class="btn btn-info btn-sm">普通用户</button>
-        <% end %>
-      </div>&nbsp
-      <div class="item-h1", id="set_authorize">
-        <% if current_user.superadmin? %>
-          <% if @user.admin? && !@user.superadmin? %>
-            <%= render 'unauthorize' %>
-          <% elsif !@user.admin? && !@user.superadmin? %>
-            <%= render 'authorize' %>
-          <% else %>
-          <% end %>
+          <span class='badge badge-primary'>普通用户</span>
         <% end %>
       </div>
     </div>

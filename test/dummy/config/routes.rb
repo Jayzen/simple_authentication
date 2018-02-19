@@ -32,4 +32,5 @@ Rails.application.routes.draw do
     get 'remove', on: :collection
   end
   resources :tags
+  resources :pictures, only: [:create]
 end

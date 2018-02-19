@@ -7,3 +7,5 @@
 //= require avatar
 //= require select_all.js
 //= require simplemde.min
+//= require inline-attachment
+//= require codemirror-4.inline-attachment

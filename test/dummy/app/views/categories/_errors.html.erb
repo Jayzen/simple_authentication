@@ -1,9 +1,0 @@
-<% unless @category.errors.blank? %>
-  <div class="alert alert-danger">
-    <ul class="list-unstyled">
-      <% @category.errors.messages.values.flatten.each do |error| %>
-        <li><i class="fa fa-exclamation-circle"></i> <%= error %></li>
-      <% end -%>
-    </ul>
-  </div>
-<% end -%>

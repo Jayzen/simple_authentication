@@ -31,9 +31,12 @@ class InitializerGenerator < Rails::Generators::Base
     directory "views/comments", "app/views/comments" 
     directory "views/notifications", "app/views/notifications"
     directory "views/tags", "app/views/tags"
-    
+    directory "uploaders", "app/uploaders"
+
     copy_file "mailers/user_mailer.rb", "app/mailers/user_mailer.rb"
-    copy_file "uploaders/avatar_uploader.rb", "app/uploaders/avatar_uploader.rb"
+    copy_file "assets/codemirror-4.inline-attachment.js", "app/assets/javascripts/codemirror-4.inline-attachment.js"
+    copy_file "assets/inline-attachment.js", "app/assets/javascripts/inline-attachment.js"
+
     directory "views/kaminari", "app/views/kaminari"
     directory "migrate", "db/migrate"
     directory "models", "app/models"
@@ -78,6 +81,7 @@ class InitializerGenerator < Rails::Generators::Base
     get 'remove', on: :collection
   end
   resources :tags
+  resources :pictures, only: [:create]
 RUBY
     end
 
@@ -89,6 +93,8 @@ RUBY
 //= require avatar
 //= require select_all.js
 //= require simplemde.min
+//= require inline-attachment
+//= require codemirror-4.inline-attachment
 RUBY
     end
 

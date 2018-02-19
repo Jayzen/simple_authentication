@@ -20,7 +20,16 @@
             <% @articles.each do |article| %>
               <tr class="text-secondary">
                 <td><%= check_box_tag "[article_ids][]", article.id, false, class: "selectable" %></td>
-                <td><%=link_to "#{article.title}", article_path(article), class: "text-secondary" %></td>
+                <td class="d-flex flex-row">
+                  <div>
+                    <%=link_to "#{article.title}", article_path(article), class: "text-secondary" %>
+                  </div>
+                  <div id="<%= article.id %>-article">
+                    <% if article.status? %>
+                      <span class='badge badge-primary'>已发布</span>
+                    <% end %>
+                  </div>
+                </td>
                 <td><small><%= article.updated_at.to_s(:db) %></small></td>
                 <td><%= link_to "编辑", edit_article_path(article), class: "btn btn-secondary btn-sm" %></td>
                 <td><%= link_to "删除", article, method: :delete, data: { confirm: "确定删除?" }, class: "btn btn-secondary btn-sm" %></td>
