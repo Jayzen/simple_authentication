@@ -110,6 +110,6 @@ class ArticlesController < ApplicationController
     end
 
     def fetch_categories
-      @root_categories = Category.roots.order(id: "desc")
+      @root_categories = Category.includes(:subordinates).roots.order(id: "desc")
     end
 end

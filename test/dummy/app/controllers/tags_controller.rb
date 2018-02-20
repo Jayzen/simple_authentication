@@ -11,6 +11,6 @@ class TagsController < ApplicationController
 
   private
     def find_root_tags
-      @root_tags = Category.roots.order(weight: "desc")
+      @root_tags = Category.includes(:subordinates).roots.order(weight: "desc")
     end
 end

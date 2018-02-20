@@ -8,7 +8,7 @@ class CategoriesController < ApplicationController
     if params[:id].blank?
       @categories = Category.roots
     else
-      @category = Category.find(params[:id])
+      @category = Category.includes(:subordinates).find(params[:id])
       @categories = @category.children
     end
 

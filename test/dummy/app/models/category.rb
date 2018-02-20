@@ -6,7 +6,8 @@ class Category < ApplicationRecord
   validates :name, uniqueness: { message: "标签名称需唯一" }
 
   has_many :articles, dependent: :destroy
-  
+  has_many :subordinates, class_name: "Category", foreign_key: "ancestry"
+
   def self.grouped_data
     self.roots.order("weight desc").inject([]) do |result, parent|
       row = []

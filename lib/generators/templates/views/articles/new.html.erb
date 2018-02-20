@@ -20,7 +20,7 @@
           <option value="" selected disabled hidden>选择标签..</option>
           <% @root_categories.each do |category| %>
             <optgroup label="<%= category.name %>"></optgroup>
-            <% category.children.each do |sub_category| %>
+            <% category.subordinates.each do |sub_category| %>
               <option value="<%= sub_category.id %>" <%= @article.category_id == sub_category.id ? 'selected' : '' %>><%= sub_category.name %></option>
             <% end -%>
           <% end -%>
@@ -44,13 +44,17 @@
 </div>
 <%= content_for :javascripts do %>
   <script>
-    document.querySelectorAll('.simplemde').forEach(function(editor) {
-      var simplemde = new SimpleMDE({ element: editor });
+    $(function () {
+      document.querySelectorAll('.simplemde').forEach(function(editor) {
+        var simplemde = new SimpleMDE({ 
+          promptURLs: true,
+          element: editor });
 
-      inlineAttachment.editors.codemirror4.attach(simplemde.codemirror, {
-        uploadUrl: '/pictures',
-        extraHeaders: { 'X-CSRF-Token': Rails.csrfToken() }
+        inlineAttachment.editors.codemirror4.attach(simplemde.codemirror, {
+          uploadUrl: '/pictures',
+          extraHeaders: { 'X-CSRF-Token': Rails.csrfToken() }
+        });
       });
-    });
+    })
   </script>
 <% end -%>

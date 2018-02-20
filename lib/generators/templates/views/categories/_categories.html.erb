@@ -22,7 +22,7 @@
                <%= link_to "删除", category_path(category), method: :delete, 'data-confirm': "确认删除吗?", class: "btn btn-secondary btn-sm" %>
                <% if category.root? %>
                  <a href="<%= categories_path(id: category) %>", class="btn btn-secondary btn-sm">
-                   查看子分类 <span class="badge badge-light"><%= category.children.size %></span>
+                   查看子分类 <span class="badge badge-light"><%= category.subordinates.size %></span>
                  </a>
                <% end -%>
              </td>
