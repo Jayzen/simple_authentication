@@ -15,9 +15,11 @@ class ArticlesController < ApplicationController
 
   def new
     @article = Article.new
+    @root_tags = Category.includes(:subordinates).roots.order(weight: "desc")
   end
 
   def edit
+    @root_tags = Category.includes(:subordinates).roots.order(weight: "desc")
     render 'new'
   end
 
