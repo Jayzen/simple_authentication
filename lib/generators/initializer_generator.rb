@@ -133,6 +133,7 @@ gem 'select_all-rails'
 gem 'ancestry'
 gem 'simplemde-rails'
 gem 'faker'
+gem 'record_tag_helper', '~> 1.0'
 RUBY
     end
 

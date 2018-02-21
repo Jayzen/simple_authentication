@@ -14,12 +14,17 @@
     
     <div class="d-flex flex-row row-hl">
       <div class="form-group item-hl mr-3">
-        <label class="text-secondary">标签:</label>
-        <div class="input-group-btn">
-          <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#node-selector">
-            <%= @article.category&.name || '这里选择标签...' %>
-          </button>
-        </div>
+        <label class="text-secondary">标签</label>
+        <select name="article[category_id]", class="form-control text-secondary">
+          <option></option>
+          <option value="" selected disabled hidden>选择标签..</option>
+          <% @root_categories.each do |category| %>
+            <optgroup label="<%= category.name %>"></optgroup>
+            <% category.subordinates.each do |sub_category| %>
+              <option value="<%= sub_category.id %>" <%= @article.category_id == sub_category.id ? 'selected' : '' %>><%= sub_category.name %></option>
+            <% end -%>
+          <% end -%>
+        </select>
       </div>
       <div class="form-group item-hl mr-3">
         <label class="text-secondary">状态:</label>
@@ -37,23 +42,6 @@
     </div>
   <% end -%>
 </div>
-
-<div class="modal fade" id="node-selector" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">标签选择</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <%= render 'tags/tags'%>
-      </div>
-    </div>
-  </div>
-</div>
-
 <%= content_for :javascripts do %>
   <script>
     $(function () {

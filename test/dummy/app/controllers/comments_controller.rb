@@ -7,7 +7,7 @@ class CommentsController < ApplicationController
     @comment.user_id = current_user.id
     if @comment.save
       flash[:success] = "评论成功!"
-      redirect_to article_path(@article)
+      redirect_to article_path(@article, anchor: "comment_#{@comment.id}")
     else
       flash[:danger] = "评论不能为空!"
       redirect_to article_path(@article)
