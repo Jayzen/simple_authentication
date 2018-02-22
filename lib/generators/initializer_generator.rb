@@ -31,6 +31,8 @@ class InitializerGenerator < Rails::Generators::Base
     directory "views/comments", "app/views/comments" 
     directory "views/notifications", "app/views/notifications"
     directory "views/tags", "app/views/tags"
+    directory "views/likes", "app/views/likes"
+
     directory "uploaders", "app/uploaders"
 
     copy_file "mailers/user_mailer.rb", "app/mailers/user_mailer.rb"
@@ -43,6 +45,7 @@ class InitializerGenerator < Rails::Generators::Base
     directory "controllers", "app/controllers"
     directory "config/initializers", "config/initializers"
     copy_file "config/locales/zh.yml", "config/locales/zh.yml"
+    copy_file "config/initializers/social_share_button.rb", "config/initializers/social_share_button.rb"
   end
 
   desc "modify initializer file"
@@ -82,6 +85,9 @@ class InitializerGenerator < Rails::Generators::Base
   end
   resources :tags
   resources :pictures, only: [:create]
+  resources :likes
+  resources :followers
+  resources :keeps
 RUBY
     end
 
@@ -95,6 +101,8 @@ RUBY
 //= require simplemde.min
 //= require inline-attachment
 //= require codemirror-4.inline-attachment
+//= require social-share-button
+//= require social-share-button/wechat
 RUBY
     end
 
@@ -134,6 +142,7 @@ gem 'ancestry'
 gem 'simplemde-rails'
 gem 'faker'
 gem 'record_tag_helper', '~> 1.0'
+gem 'social-share-button'
 RUBY
     end
 

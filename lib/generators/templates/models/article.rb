@@ -4,6 +4,9 @@ class Article < ApplicationRecord
   belongs_to :category
   has_many :comments, dependent: :destroy
 
+  has_many :likes
+  has_many :users, through: :likes
+
   validates :title, presence: true
   validates :content, presence: true
 

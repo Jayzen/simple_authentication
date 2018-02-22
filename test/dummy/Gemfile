@@ -17,6 +17,7 @@ gem 'ancestry'
 gem 'simplemde-rails'
 gem 'faker'
 gem 'record_tag_helper', '~> 1.0'
+gem 'social-share-button'
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")

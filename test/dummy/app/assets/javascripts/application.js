@@ -9,3 +9,5 @@
 //= require simplemde.min
 //= require inline-attachment
 //= require codemirror-4.inline-attachment
+//= require social-share-button
+//= require social-share-button/wechat

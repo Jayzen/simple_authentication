@@ -33,4 +33,7 @@ Rails.application.routes.draw do
   end
   resources :tags
   resources :pictures, only: [:create]
+  resources :likes
+  resources :followers
+  resources :keeps
 end
