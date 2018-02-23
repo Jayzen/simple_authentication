@@ -34,6 +34,6 @@ Rails.application.routes.draw do
   resources :tags
   resources :pictures, only: [:create]
   resources :likes
-  resources :followers
+  resources :follows
   resources :keeps
 end

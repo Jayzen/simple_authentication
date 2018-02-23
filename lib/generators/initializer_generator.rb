@@ -32,6 +32,8 @@ class InitializerGenerator < Rails::Generators::Base
     directory "views/notifications", "app/views/notifications"
     directory "views/tags", "app/views/tags"
     directory "views/likes", "app/views/likes"
+    directory "views/follows", "app/views/follows"
+    directory "views/keeps", "app/views/keeps"
 
     directory "uploaders", "app/uploaders"
 
@@ -86,7 +88,7 @@ class InitializerGenerator < Rails::Generators::Base
   resources :tags
   resources :pictures, only: [:create]
   resources :likes
-  resources :followers
+  resources :follows
   resources :keeps
 RUBY
     end

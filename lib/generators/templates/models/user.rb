@@ -26,9 +26,14 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :notifications, foreign_key: :recipient_id
   
-  has_many :likes
+  has_many :likes, dependent: :destroy
   has_many :topics, through: :likes, source: :article
-  
+  has_many :follows, dependent: :destroy
+  has_many :follow_topics, through: :follows, source: :article
+  has_many :keeps, dependent: :destroy
+  has_many :keep_topics, through: :keeps, source: :article
+
+
   extend FriendlyId
   friendly_id :name, use: [:slugged, :history]
 

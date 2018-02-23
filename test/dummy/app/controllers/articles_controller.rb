@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
-  before_action :logged_in_user
+  before_action :logged_in_user, except: [:show]
   before_action :correct_user, only: [:edit, :update, :destroy]
   before_action :fetch_categories, only: [:new, :create, :edit, :update]
 

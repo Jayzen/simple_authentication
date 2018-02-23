@@ -6,6 +6,10 @@ class Article < ApplicationRecord
 
   has_many :likes
   has_many :users, through: :likes
+  has_many :follows
+  has_many :users, through: :follows
+  has_many :keeps
+  has_many :users, through: :keeps
 
   validates :title, presence: true
   validates :content, presence: true

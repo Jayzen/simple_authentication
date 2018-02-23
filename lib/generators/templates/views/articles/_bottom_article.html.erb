@@ -1,0 +1,33 @@
+<div id="bottom-like">
+  <% if logged_in? %>
+    <% if current_user.topics.exists?(@article.id)%>
+      <%= render 'unlike_bottom' %>
+    <% else %>
+       <%= render 'like_bottom' %>
+    <% end %>
+  <% else %>
+    <%= render 'like_bottom' %>
+  <% end %> 
+</div>
+<div id="bottom-follow">
+  <% if logged_in? %>
+    <% if current_user.follow_topics.exists?(@article.id)%>
+      <%= render 'unfollow' %>
+    <% else %>
+      <%= render 'follow' %>
+    <% end %>
+  <% else %>
+    <%= render 'follow' %>
+  <% end %>
+</div>
+<div id="bottom-keep">
+  <% if logged_in? %>
+    <% if current_user.keep_topics.exists?(@article.id)%>
+      <%= render 'unkeep' %>
+    <% else %>
+      <%= render 'keep' %>
+    <% end %>
+  <% else %>
+    <%= render 'keep' %>
+  <% end %>
+</div>

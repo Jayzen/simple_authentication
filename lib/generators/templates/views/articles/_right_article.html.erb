@@ -11,15 +11,35 @@
           <%= render 'like' %>
         <% end %>
       <% else %>
-        <i class="fa fa-heart-o fa-3x"></i>
+        <%= render 'like' %>
       <% end %>
     </div>
-    <div class="mt-0 mb-4 text-secondary">
-      <strong>25个赞</strong>
+    <div class="mt-0 mb-4 text-secondary" id="likes_count">
+      <%= render 'likes_count'%>
     </div>
-    <div class="mb-3">
-      <button type="button" class="btn btn-outline-secondary btn-sm">关注</button>
-      <button type="button" class="btn btn-secondary btn-sm">收藏</button>
+    <div class="d-flex flex-row justify-content-center mb-3">
+      <div id="follow">
+        <% if logged_in? %>
+          <% if current_user.follow_topics.exists?(@article.id)%>
+            <%= render 'unfollow' %>
+          <% else %>
+            <%= render 'follow' %>
+          <% end %>
+        <% else %>
+          <%= render 'follow' %>
+        <% end %>
+      </div>
+      <div id="keep">
+        <% if logged_in? %>
+          <% if current_user.keep_topics.exists?(@article.id)%>
+            <%= render 'unkeep' %>
+          <% else %>
+            <%= render 'keep' %>
+          <% end %>
+        <% else %>
+          <%= render 'keep' %>
+        <% end %>
+      </div>
     </div>
     <div>
       <hr>
