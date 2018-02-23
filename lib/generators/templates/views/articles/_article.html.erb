@@ -23,7 +23,13 @@
         <%= render 'bottom_article'%>
       </div>
       <div>
-        <a href="<%= edit_article_path(@article) %>", class="text-secondary"><i class="fa fa-edit fa-fw"></i> <small>编辑</small></a>
+        <% if @article.user == current_user %>
+          <button type="submit" class="btn btn-light btn-sm text-secondary">
+            <a href="<%= edit_article_path(@article) %>", class="text-secondary">
+              <i class="fa fa-bookmark fa-fw text-secondary"></i>编辑
+            </a>
+          </button>
+        <% end %>
       </div>
     </div>
   </div>

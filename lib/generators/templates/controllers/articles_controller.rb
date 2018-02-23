@@ -105,7 +105,11 @@ class ArticlesController < ApplicationController
     end
 
     def correct_user
-      @article = current_user.articles.friendly.find(params[:id])
+      begin
+        @article = current_user.articles.friendly.find(params[:id])
+      rescue ActiveRecord::RecordNotFound
+        @article = nil
+      end
       redirect_to root_url if @article.nil?
     end
 
