@@ -18,20 +18,7 @@
         <p><%= @article.content %></p>
       </div>
     </div>
-    <div class="card-footer d-flex flex-row justify-content-between">
-      <div class="d-flex flex-row">
-        <%= render 'bottom_article'%>
-      </div>
-      <div>
-        <% if @article.user == current_user %>
-          <button type="submit" class="btn btn-light btn-sm text-secondary">
-            <a href="<%= edit_article_path(@article) %>", class="text-secondary">
-              <i class="fa fa-bookmark fa-fw text-secondary"></i>编辑
-            </a>
-          </button>
-        <% end %>
-      </div>
-    </div>
+    <%= render 'bottom_article'%>
   </div>
   <%= render 'new_comment' %>
   <%= render 'comments' %>

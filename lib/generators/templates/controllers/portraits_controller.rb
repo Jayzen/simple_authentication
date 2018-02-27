@@ -28,8 +28,8 @@ class PortraitsController < ApplicationController
       if params[:portrait][:avatar].present?
         render :crop
       else
-        redirect_to user_path(current_user)
         flash[:success] = "头像裁剪成功!"
+        redirect_to new_portrait_path
       end
     else
       render :new

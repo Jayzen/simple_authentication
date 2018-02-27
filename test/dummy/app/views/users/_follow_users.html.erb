@@ -1,0 +1,13 @@
+<div class="text-secondary">
+  <table class="table table-sm mt-4">
+    <% @users.each do |user| %>
+      <tbody>
+        <tr>
+          <td class="text-left"><%= user.name %></td>
+          <td class="text-center"><%= link_to "#{user.email}", user_path(user), class: "text-secondary" %></td>
+          <td class="text-right"><%= user.created_at.strftime("%F") %></td>
+        </tr>
+      </tbody>
+    <% end %>
+  </table>
+</div>

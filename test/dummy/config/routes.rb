@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :users do
     member do
       post :authorize, :unauthorize, :forbidden, :unforbidden
+      get :likes, :keeps, :follows, :following, :followers
     end
     get 'search', on: :collection
   end
@@ -33,7 +34,8 @@ Rails.application.routes.draw do
   end
   resources :tags
   resources :pictures, only: [:create]
-  resources :likes
-  resources :follows
-  resources :keeps
+  resources :likes, only: [:create, :destroy]
+  resources :follows, only: [:create, :destroy]
+  resources :keeps, only: [:create, :destroy]
+  resources :relationships, only: [:create, :destroy]
 end

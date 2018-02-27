@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
   before_action :find_user, only: [:show, :update, :edit, 
                                    :authorize, :unauthorize,
-                                   :avatar_new, :avatar_create, :avatar_update]
+                                   :avatar_new, :avatar_create, :avatar_update,
+                                   :likes, :follows, :keeps, :following, :followers]
   before_action :logged_in_user, only: [:edit, :update, :destroy, :show, :search,
                                         :avatar_create, :avatar_update, :avatar_new]
   before_action :correct_user, only: [:edit, :update,
@@ -37,7 +38,7 @@ class UsersController < ApplicationController
     @user.slug = nil
     if @user.update_attributes(user_params)
       flash[:success] = "用户更新成功!"
-      redirect_to @user
+      redirect_to edit_user_path(@user)
     else
       render 'new'
     end
@@ -100,13 +101,33 @@ class UsersController < ApplicationController
     end
     render 'index'
   end
+  
+  def likes
+    @articles = @user.like_topics
+  end
+
+  def follows
+    @articles = @user.follow_topics
+  end
+
+  def keeps
+    @articles = @user.keep_topics
+  end
+
+  def following
+    @users = @user.following
+  end
+
+  def followers
+    @users = @user.followers
+  end
 
   private
     def find_user
-      @user = User.friendly.find(params[:id])
+      @user = User.includes(:articles, {articles: :category}).friendly.find(params[:id])
     end
 
     def user_params
-      params.require(:user).permit(:name, :email, :password, :password_confirmation,:portrait, :gender)
+      params.require(:user).permit(:name, :email, :password, :password_confirmation,:portrait, :gender, :description)
     end
 end

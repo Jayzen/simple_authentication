@@ -20,7 +20,7 @@ class PasswordAltersController < ApplicationController
       log_in @user
       @user.update_attribute(:reset_digest, nil)
       flash[:success] = "密码已经被成功重置!"
-      redirect_to @user
+      redirect_to edit_password_alter_path(@user)
     else
       render 'edit'
     end

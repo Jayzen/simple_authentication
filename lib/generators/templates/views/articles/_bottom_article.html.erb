@@ -1,33 +1,46 @@
-<div id="bottom-like">
-  <% if logged_in? %>
-    <% if current_user.topics.exists?(@article.id)%>
-      <%= render 'unlike_bottom' %>
-    <% else %>
-       <%= render 'like_bottom' %>
+<div class="card-footer d-flex flex-row justify-content-between">
+  <div class="d-flex flex-row">
+    <div id="bottom-like">
+      <% if logged_in? %>
+        <% if current_user.topics.exists?(@article.id)%>
+          <%= render 'unlike_bottom' %>
+        <% else %>
+         <%= render 'like_bottom' %>
+        <% end %>
+      <% else %>
+        <%= render 'like_bottom' %>
+      <% end %> 
+    </div>
+    <div id="bottom-follow">
+      <% if logged_in? %>
+        <% if current_user.follow_topics.exists?(@article.id)%>
+          <%= render 'unfollow' %>
+        <% else %>
+          <%= render 'follow' %>
+        <% end %>
+      <% else %>
+        <%= render 'follow' %>
+      <% end %>
+    </div>
+    <div id="bottom-keep">
+      <% if logged_in? %>
+        <% if current_user.keep_topics.exists?(@article.id)%>
+          <%= render 'unkeep' %>
+        <% else %>
+          <%= render 'keep' %>
+        <% end %>
+      <% else %>
+        <%= render 'keep' %>
+      <% end %>
+    </div>
+  </div>
+  <div>
+    <% if @article.user == current_user %>
+      <button type="submit" class="btn btn-light btn-sm text-secondary">
+        <a href="<%= edit_article_path(@article) %>", class="text-secondary">
+          <i class="fa fa-edit fa-fw text-secondary"></i>编辑
+        </a>
+      </button>
     <% end %>
-  <% else %>
-    <%= render 'like_bottom' %>
-  <% end %> 
-</div>
-<div id="bottom-follow">
-  <% if logged_in? %>
-    <% if current_user.follow_topics.exists?(@article.id)%>
-      <%= render 'unfollow' %>
-    <% else %>
-      <%= render 'follow' %>
-    <% end %>
-  <% else %>
-    <%= render 'follow' %>
-  <% end %>
-</div>
-<div id="bottom-keep">
-  <% if logged_in? %>
-    <% if current_user.keep_topics.exists?(@article.id)%>
-      <%= render 'unkeep' %>
-    <% else %>
-      <%= render 'keep' %>
-    <% end %>
-  <% else %>
-    <%= render 'keep' %>
-  <% end %>
+  </div> 
 </div>

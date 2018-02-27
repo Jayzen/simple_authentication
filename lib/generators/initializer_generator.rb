@@ -34,7 +34,7 @@ class InitializerGenerator < Rails::Generators::Base
     directory "views/likes", "app/views/likes"
     directory "views/follows", "app/views/follows"
     directory "views/keeps", "app/views/keeps"
-
+    directory "views/relationships", "app/views/relationships"
     directory "uploaders", "app/uploaders"
 
     copy_file "mailers/user_mailer.rb", "app/mailers/user_mailer.rb"
@@ -61,6 +61,7 @@ class InitializerGenerator < Rails::Generators::Base
   resources :users do
     member do
       post :authorize, :unauthorize, :forbidden, :unforbidden
+      get :likes, :keeps, :follows, :following, :followers
     end
     get 'search', on: :collection
   end
@@ -87,9 +88,10 @@ class InitializerGenerator < Rails::Generators::Base
   end
   resources :tags
   resources :pictures, only: [:create]
-  resources :likes
-  resources :follows
-  resources :keeps
+  resources :likes, only: [:create, :destroy]
+  resources :follows, only: [:create, :destroy]
+  resources :keeps, only: [:create, :destroy]
+  resources :relationships, only: [:create, :destroy]
 RUBY
     end
 

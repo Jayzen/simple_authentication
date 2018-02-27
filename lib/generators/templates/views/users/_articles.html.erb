@@ -1,0 +1,13 @@
+<div class="text-secondary">
+  <table class="table table-sm mt-4">
+    <% @articles.each do |article| %>
+      <tbody>
+        <tr>
+          <td class="text-left"><%= article.category.name %></td>
+          <td class="text-center"><%= link_to "#{article.title}", article_path(article), class: "text-secondary" %></td>
+          <td class="text-right"><%= article.created_at.strftime("%F") %></td>
+        </tr>
+      </tbody>
+    <% end %>
+  </table>
+</div>

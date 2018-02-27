@@ -8,8 +8,16 @@
         <% articles.each do |article| %>
           <div class="col-md-6">
             <div class="media">
-              <%= image_tag article.user.avatar.large.url, size: "48x48", class: "mr-3 rounded-circle" %>
-               <div class="media-body text-secondary">
+              <% if article.user.avatar.to_s.size == 0 %>
+                <% if article.user.gender == "male" %>
+                  <%= image_tag "male.jpeg", size: "48x48", class: "mr-3 rounded-circle" %>
+                <% else %>
+                  <%= image_tag "female.jpg", size: "48x48", class: "mr-3 rounded-circle" %>
+                <% end %>
+              <% else %>
+                <%= image_tag article.user.avatar.large.url, size: "48x48", class: "mr-3 rounded-circle" %>
+              <% end %> 
+              <div class="media-body text-secondary">
                  <p class="mb-0">
                  <strong><%= article.category.name %></strong>&nbsp
                  <%=link_to "#{article.title}", article_path(article), class: "mb-0 text-secondary" %></p>
