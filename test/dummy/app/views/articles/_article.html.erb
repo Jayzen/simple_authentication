@@ -14,8 +14,8 @@
           </small>
         </p>
       </div>
-      <div class="text-secondary">
-        <p><%= @article.content %></p>
+      <div class="text-secondary" id="picture">
+        <p><%= markdownify @article.content %></p>
       </div>
     </div>
     <%= render 'bottom_article'%>

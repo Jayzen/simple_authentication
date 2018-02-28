@@ -2,7 +2,7 @@ require 'benchmark'
 require 'faker'
 
 puts Benchmark.measure { 
-  500.times do 
+  50.times do 
     Article.create(
       user_id: 1,
       category_id: 2,

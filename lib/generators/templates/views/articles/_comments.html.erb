@@ -15,7 +15,7 @@
             <a href="<%= comment_path(comment, article: comment.article) %>", data-method="delete", data-confirm="确定删除评论?", class="text-secondary"><i class="fa fa-trash-o fa-fw"></i></a>
           <% end %>
         </div>
-        <p class="text-secondary"><%= comment.content %></p>
+        <p class="text-secondary"><%= markdownify comment.content %></p>
       </div>
     </div>
   <% end %>

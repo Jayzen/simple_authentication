@@ -147,6 +147,12 @@ gem 'simplemde-rails'
 gem 'faker'
 gem 'record_tag_helper', '~> 1.0'
 gem 'social-share-button'
+gem 'html-pipeline'
+gem 'github-markdown'
+gem 'gemoji'
+gem 'sanitize'
+gem 'commonmarker'
+gem 'github-linguist'
 RUBY
     end
 

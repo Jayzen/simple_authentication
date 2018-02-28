@@ -65,6 +65,7 @@ GEM
       activemodel (>= 4.0.0)
       activesupport (>= 4.0.0)
       mime-types (>= 1.16)
+    charlock_holmes (0.7.5)
     childprocess (0.8.0)
       ffi (~> 1.0, >= 1.0.11)
     coffee-rails (4.2.2)
@@ -74,6 +75,8 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.12.2)
+    commonmarker (0.17.8)
+      ruby-enum (~> 0.5)
     concurrent-ruby (1.0.5)
     crass (1.0.3)
     css_parser (1.6.0)
@@ -87,6 +90,7 @@ GEM
       faraday
       multi_json
     erubi (1.7.0)
+    escape_utils (1.2.1)
     execjs (2.7.0)
     faker (1.8.7)
       i18n (>= 0.7)
@@ -98,9 +102,19 @@ GEM
     foundation_emails (2.2.1.0)
     friendly_id (5.2.3)
       activerecord (>= 4.0.0)
+    gemoji (3.0.0)
+    github-linguist (6.0.1)
+      charlock_holmes (~> 0.7.5)
+      escape_utils (~> 1.2.0)
+      mime-types (>= 1.19)
+      rugged (>= 0.25.1)
+    github-markdown (0.6.9)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     hashie (3.5.7)
+    html-pipeline (2.7.1)
+      activesupport (>= 2)
+      nokogiri (>= 1.4)
     htmlentities (4.3.4)
     i18n (0.9.1)
       concurrent-ruby (~> 1.0)
@@ -148,6 +162,8 @@ GEM
     nio4r (2.2.0)
     nokogiri (1.8.1)
       mini_portile2 (~> 2.3.0)
+    nokogumbo (1.5.0)
+      nokogiri
     popper_js (1.12.9)
     premailer (1.11.0)
       addressable
@@ -191,8 +207,15 @@ GEM
       ffi (>= 0.5.0, < 2)
     record_tag_helper (1.0.0)
       actionview (~> 5.x)
+    ruby-enum (0.7.2)
+      i18n
     ruby_dep (1.5.0)
     rubyzip (1.2.1)
+    rugged (0.26.0)
+    sanitize (4.6.0)
+      crass (~> 1.0.2)
+      nokogiri (>= 1.4.4)
+      nokogumbo (~> 1.4)
     sass (3.5.5)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
@@ -261,9 +284,14 @@ DEPENDENCIES
   capybara (~> 2.13)
   carrierwave
   coffee-rails (~> 4.2)
+  commonmarker
   faker
   font-awesome-rails
   friendly_id
+  gemoji
+  github-linguist
+  github-markdown
+  html-pipeline
   inky-rb
   jbuilder (~> 2.5)
   jquery-rails
@@ -275,6 +303,7 @@ DEPENDENCIES
   rails (~> 5.1.4)
   rails-assets-jcrop!
   record_tag_helper (~> 1.0)
+  sanitize
   sass-rails (~> 5.0)
   searchkick
   select_all-rails

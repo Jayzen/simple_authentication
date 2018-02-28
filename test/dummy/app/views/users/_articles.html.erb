@@ -1,13 +1,14 @@
-<div class="text-secondary">
+<div>
   <table class="table table-sm mt-4">
     <% @articles.each do |article| %>
       <tbody>
         <tr>
-          <td class="text-left"><%= article.category.name %></td>
-          <td class="text-center"><%= link_to "#{article.title}", article_path(article), class: "text-secondary" %></td>
-          <td class="text-right"><%= article.created_at.strftime("%F") %></td>
+          <td class="text-left text-secondary"><small><%= article.category.name %></small></td>
+          <td class="text-secondary"><%= link_to "#{article.title}", article_path(article), class: "text-secondary"%>&nbsp<small><%= article.created_at.strftime("%Y年%m月%d日") %></small></td>
+          <td class="text-right text-secondary"><small><%= article.comments_count %>/<%= article.likes_count %></small></td>
         </tr>
       </tbody>
     <% end %>
   </table>
+  <%= paginate @articles %>
 </div>

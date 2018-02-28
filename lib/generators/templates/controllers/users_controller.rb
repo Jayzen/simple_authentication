@@ -103,15 +103,15 @@ class UsersController < ApplicationController
   end
   
   def likes
-    @articles = @user.like_topics
+    @articles = @user.like_topics.page(params[:page]).per(15)
   end
 
   def follows
-    @articles = @user.follow_topics
+    @articles = @user.follow_topics.page(params[:page]).per(15)
   end
 
   def keeps
-    @articles = @user.keep_topics
+    @articles = @user.keep_topics.page(params[:page]).per(15)
   end
 
   def following
@@ -124,7 +124,7 @@ class UsersController < ApplicationController
 
   private
     def find_user
-      @user = User.includes(:articles, {articles: :category}).friendly.find(params[:id])
+      @user = User.includes(articles: :category).friendly.find(params[:id])
     end
 
     def user_params
