@@ -1,4 +1,4 @@
-<div>
+<div class="d-flex flex-column">
   <div class="card mb-3">
     <div class="card-header text-secondary text-center">
       <%= @article.title %>
@@ -20,6 +20,7 @@
     </div>
     <%= render 'bottom_article'%>
   </div>
-  <%= render 'new_comment' %>
-  <%= render 'comments' %>
+  <div class="d-flex flex-column" id="get-comments">
+    <%= render 'about_comment' %>
+  </div>
 </div>

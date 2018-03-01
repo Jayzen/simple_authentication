@@ -18,11 +18,10 @@ Rails.application.routes.draw do
   resources :portraits,           only: [:new, :create, :update]
   resources :articles do
     collection do
-      delete :remove_select
-      delete :remove_release
+      delete :remove_select, :all_unrelease, :all_release, :close_all_comments, :open_all_comments
     end
     member do
-      get :release, :unrelease
+      get :release, :unrelease, :open_comments, :close_comments
     end
   end
   get 'articles_search', to: "welcomes#articles_search"

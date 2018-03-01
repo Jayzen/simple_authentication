@@ -24,6 +24,7 @@ gem 'gemoji'
 gem 'sanitize'
 gem 'commonmarker'
 gem 'github-linguist'
+gem 'rails_emoji_picker'
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")

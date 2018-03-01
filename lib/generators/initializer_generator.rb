@@ -72,11 +72,10 @@ class InitializerGenerator < Rails::Generators::Base
   resources :portraits,           only: [:new, :create, :update]
   resources :articles do
     collection do
-      delete :remove_select
-      delete :remove_release
+      delete :remove_select, :all_unrelease, :all_release, :close_all_comments, :open_all_comments
     end
     member do
-      get :release, :unrelease
+      get :release, :unrelease, :open_comments, :close_comments
     end
   end
   get 'articles_search', to: "welcomes#articles_search"
@@ -153,6 +152,7 @@ gem 'gemoji'
 gem 'sanitize'
 gem 'commonmarker'
 gem 'github-linguist'
+gem 'rails_emoji_picker'
 RUBY
     end
 
@@ -170,7 +170,7 @@ RUBY
 
 
     gsub_file 'config/environments/development.rb', 'config.action_mailer.raise_delivery_errors = false', 'config.action_mailer.raise_delivery_errors = true'
-    
+
     inject_into_file 'config/environments/development.rb', after: "Rails.application.configure do\n" do <<-'RUBY'
   config.action_mailer.default_url_options = {host: "localhost:3000"}
   config.action_mailer.delivery_method = :smtp

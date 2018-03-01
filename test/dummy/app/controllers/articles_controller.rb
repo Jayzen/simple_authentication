@@ -6,7 +6,7 @@ class ArticlesController < ApplicationController
 
   def show
     @comment = Comment.new
-    @comments = @article.comments.includes(:user).order("created_at desc")
+    @comments = @article.comments.includes(:user).order("created_at asc")
     @article.increment!(:view_count)
     if request.path != article_path(@article) #当访问旧值时，链接地址会自动跳到更新后的新值中
       redirect_to @article, :status => :moved_permanently
@@ -53,11 +53,13 @@ class ArticlesController < ApplicationController
     flash[:success] = '文章删除成功!'
   end
 
-  def remove_release
-    @articles = current_user.articles
-    @articles.each do |article|
-      article.update_attribute(:status, false)
-    end
+  def all_unrelease
+    current_user.articles.update_all(status: false)
+    redirect_to articles_path
+  end
+
+  def all_release
+    current_user.articles.update_all(status: true)
     redirect_to articles_path
   end
 
@@ -94,6 +96,36 @@ class ArticlesController < ApplicationController
     end
   end
 
+  def open_comments
+    @article = Article.friendly.find(params[:id])
+    @article.toggle!(:set_comments)
+
+    respond_to do |format|
+      format.html { redirect_to articles_path }
+      format.js
+    end
+  end
+
+  def close_comments
+    @article = Article.friendly.find(params[:id])
+    @article.toggle!(:set_comments)
+
+    respond_to do |format|
+      format.html { redirect_to articles_path }
+      format.js
+    end
+  end
+
+  def close_all_comments
+    current_user.articles.update_all(set_comments: false)
+    redirect_to articles_path
+  end
+
+  def open_all_comments
+    current_user.articles.update_all(set_comments: true)
+    redirect_to articles_path
+  end
+  
   private
     def set_article
       @article = Article.includes(:user).friendly.find(params[:id])

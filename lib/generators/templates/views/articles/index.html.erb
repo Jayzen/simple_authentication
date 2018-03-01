@@ -13,7 +13,8 @@
               <th>发布时间</th>
               <th>编辑</th>
               <th>删除</th>
-              <th>发布/取消发布</th>
+              <th class="text-center">发布/取消发布</th>
+              <th class="text-center">开放/关闭评论</th>
             </tr>
           </thead>
           <tbody>
@@ -24,21 +25,33 @@
                   <div>
                     <%=link_to "#{article.title}", article_path(article), class: "text-secondary" %>
                   </div>
-                  <div id="<%= article.id %>-article">
+                  <div id="<%= article.id %>-article" class="ml-1 mr-1">
                     <% if article.status? %>
                       <span class='badge badge-primary'>已发布</span>
-                    <% end %>
+                    <% end -%>
+                  </div>
+                  <div id="<%= article.id %>-article-comments" class="ml-1 mr-1">
+                    <% unless article.set_comments? %>
+                      <span class='badge badge-primary'>评论已关闭</span>
+                    <% end -%>
                   </div>
                 </td>
-                <td><small><%= article.updated_at.to_s(:db) %></small></td>
+                <td><small><%= article.created_at.strftime("%F") %></small></td>
                 <td><%= link_to "编辑", edit_article_path(article), class: "btn btn-secondary btn-sm" %></td>
                 <td><%= link_to "删除", article, method: :delete, data: { confirm: "确定删除?" }, class: "btn btn-secondary btn-sm" %></td>
-                <td id="<%= article.id %>-release">
+                <td id="<%= article.id %>-release" class="text-center">
                   <% if article.status? %>
                     <%= render 'unrelease', "@article": article %>
                   <% else %>
                     <%= render 'release', "@article": article %>
-                  <% end %>
+                  <% end -%>
+                </td>
+                <td id="<%= article.id %>-set-comments" class="text-center">
+                  <% if article.set_comments? %>
+                    <%= render 'close_comments', "@article": article %>
+                  <% else %>
+                     <%= render 'open_comments', "@article": article %>
+                  <% end -%>
                 </td>
               </tr>
             <% end %>
@@ -51,8 +64,15 @@
               <td></td>
               <td></td>
               <td></td>
-              <td><%= link_to "全部取消发布", remove_release_articles_path, method: :delete, data: { confirm: "确定全部取消发布?" }, class: "btn btn-secondary btn-sm"%></td>
-            <% end %>
+              <td class="text-center">
+                <%= link_to "全部取消发布", all_unrelease_articles_path, method: :delete, data: { confirm: "确定全部取消发布?" }, class: "btn btn-secondary btn-sm"%>
+                <%= link_to "全部发布", all_release_articles_path, method: :delete, data: { confirm: "确定全部发布?" }, class: "btn btn-secondary btn-sm"%>
+              </td>
+              <td class="text-center">
+                <%= link_to "全部关闭评论", close_all_comments_articles_path, method: :delete, data: { confirm: "确定全部关闭评论?" }, class: "btn btn-secondary btn-sm"%>
+                <%= link_to "全部打开评论", open_all_comments_articles_path, method: :delete, data: { confirm: "确定全部打开评论?" }, class: "btn btn-secondary btn-sm"%>
+              </td>
+            <% end -%>
           </tbody>
         </table>
       <% end %>
